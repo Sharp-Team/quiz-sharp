@@ -10,7 +10,7 @@ class ListQuizPage extends Component {
       return (
         <div>
           <header>
-            <h2>List Quiz Page</h2>
+            <h2>List Quiz Pagefdfsdfsdfs</h2>
           </header>
         </div>
       )
