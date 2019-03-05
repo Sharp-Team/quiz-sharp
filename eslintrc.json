@@ -1,0 +1,25 @@
+{
+  "env": {
+      "browser": true,
+      "commonjs": true,
+      "es6": true,
+      "jest": true
+  },
+  "parserOptions": {
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "sourceType": "module"
+  },
+  "rules": {
+      "quotes": [
+          2,
+          "single"
+      ],
+      "semi": [
+          "error",
+          "never"
+      ]
+  },
+  "parser": "babel-eslint"
+}
