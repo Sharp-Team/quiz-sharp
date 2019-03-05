@@ -1,21 +1,20 @@
 import React, { Component } from 'react'
+import Navigation from '../../components/Navigation'
+import Content from './content'
 
-class HomePage extends Component {
 
-    constructor(props: any) {
-      super(props)
-    }
-    
-    render() {
-      return (
-        <div>
-          <header>
-            <h2>Home Page</h2>
-          </header>
-        </div>
-      )
-    }
+class TrueFalsePage extends Component {
+  constructor(props: any) {
+    super(props)
   }
   
-  export default HomePage
-  
+  render() {
+    return (
+      <div className="wrap-all">
+        <Navigation />
+        <Content />
+      </div>
+    )
+  }
+}
+export default TrueFalsePage
