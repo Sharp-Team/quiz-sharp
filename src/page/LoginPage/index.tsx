@@ -13,9 +13,9 @@ const WrapContent = styled.div`
 function ContentLogin() {
   return(
     <WrapContent>
-      <h1 className="content">
+      <p className="content">
         Hiệp
-      </h1>
+      </p>
     </WrapContent>
   )
 }

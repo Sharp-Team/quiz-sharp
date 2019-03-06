@@ -13,9 +13,9 @@ const WrapContent = styled.div`
 function ContentProfile() {
   return(
     <WrapContent>
-      <h1 className="content">
-        Hiệp
-      </h1>
+      <p className="content">
+        Trang
+      </p>
     </WrapContent>
   )
 }

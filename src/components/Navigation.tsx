@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import logo from '../images/logo.png'
+import { Link } from 'react-router-dom'
 
 const WrapNav = styled.div`
     .bg-light {
@@ -14,6 +15,11 @@ const WrapNav = styled.div`
         margin-left: 1rem;
         font-weight: bold;
         margin-right: 3rem;
+        font-size: 1.6rem;
+      }
+      .title-logo {
+        margin-bottom: 0;
+        margin-left: 10px;
       }
     }
 
@@ -63,9 +69,10 @@ const WrapNav = styled.div`
       border-radius: 3.25rem;
       padding: 0.1rem 2rem;
       color: #f100a8;
+      background: white;
       font-size: 20px;
       margin-left: 0.5rem;
-      box-shadow: 0px 15px 15px #CE0059;
+      box-shadow: 0 5px 17px #0000009e;
     }
   `
 
@@ -74,19 +81,21 @@ class Navigaion extends Component {
     return(
       <WrapNav >
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <img src={logo} alt="logo" />
-          <a className="navbar-brand my-title" href="#">QuizSharp</a>
+          <Link className="navbar-brand my-title d-flex" to="/">
+            <img src={logo} alt="logo" />
+            <p className="title-logo">QuizSharp</p>
+          </Link>
           <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active navi-active">
