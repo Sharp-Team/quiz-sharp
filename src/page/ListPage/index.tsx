@@ -46,7 +46,7 @@ class ListPage extends Component {
           <th scope="row">2</th>
           <td>Danh sách quiz của một user</td>
           <td><Link to="/list-quiz">Link</Link></td>
-          <td>Hiệp, Hoàng </td>
+          <td>Hiệp, Hoàng, Hòa </td>
         </tr>
         <tr>
           <th scope="row">3</th>

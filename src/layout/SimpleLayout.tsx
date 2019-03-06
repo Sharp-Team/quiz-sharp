@@ -5,7 +5,9 @@ function SimpleLayout({ content }: any) {
   return (
     <div>
       <Navigation />
-      {content}
+      <div className="container-fluid">
+        {content}
+      </div>
     </div>
   )
 }

@@ -1,21 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { SmallLayout } from '../../layout'
+import { SideBarSmall } from '../../components'
+import Content from './content'
 
-class QuizPage extends Component {
-
-    constructor(props: any) {
-      super(props)
-    }
-    
-    render() {
-      return (
-        <div>
-          <header>
-            <h2>Quiz Page</h2>
-          </header>
-        </div>
-      )
-    }
-  }
+function ListQuizPage() {
+  return (
+    <SmallLayout
+      sidebar={ <SideBarSmall /> }
+      content={ <Content /> }
+    />
+  )
+}
   
-  export default QuizPage
+export default ListQuizPage
   

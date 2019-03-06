@@ -13,9 +13,9 @@ const WrapContent = styled.div`
 function ContentRegister() {
   return(
     <WrapContent>
-      <h1 className="content">
+      <p className="content">
         Trang
-      </h1>
+      </p>
     </WrapContent>
   )
 }
