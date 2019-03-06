@@ -1,21 +1,11 @@
 import React, { Component } from 'react'
+import { SimpleLayout } from '../../layout'
 
-class ListQuizPage extends Component {
-
-    constructor(props: any) {
-      super(props)
-    }
-    
-    render() {
-      return (
-        <div>
-          <header>
-            <h2>List Quiz Page</h2>
-          </header>
-        </div>
-      )
-    }
+export default class ListQuizPage extends Component {
+  render() {
+    return (
+      <div> List Quiz Page</div>
+    )
   }
-  
-  export default ListQuizPage
+}
   
