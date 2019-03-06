@@ -12,6 +12,8 @@ const WrapNav = styled.div`
       .navbar-brand {
         color: #fff;
         margin-left: 1rem;
+        font-weight: bold;
+        margin-right: 3rem;
       }
     }
 
@@ -49,6 +51,7 @@ const WrapNav = styled.div`
     }
 
     .btn-login {
+      font-weight: bold;
       background: transparent;
       color: #f5f5f5;
       font-size: 20px;
@@ -56,11 +59,13 @@ const WrapNav = styled.div`
     }
 
     .btn-signup {
+      font-weight: bold;
       border-radius: 3.25rem;
       padding: 0.1rem 2rem;
       color: #f100a8;
       font-size: 20px;
       margin-left: 0.5rem;
+      box-shadow: 0px 15px 15px #CE0059;
     }
   `
 
