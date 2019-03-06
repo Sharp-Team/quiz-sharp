@@ -10,21 +10,20 @@ const WrapContent = styled.div`
   }
 `
 
-function ContentLogin() {
+function ContentRegister() {
   return(
     <WrapContent>
       <h1 className="content">
-        Hiệp
+        Trang
       </h1>
     </WrapContent>
   )
 }
 
-function LoginPage() {
+function RegisterPage() {
   return(
-    <SimpleLayout content={ <ContentLogin /> } />
+    <SimpleLayout content={ <ContentRegister /> } />
   )
 }
 
-export default LoginPage
-  
+export default RegisterPage

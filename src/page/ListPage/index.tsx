@@ -3,7 +3,6 @@ import { UserBridge } from '../../bridges/bridges';
 // import { User } from './types/User';
 import BridgeManager, { Bridge } from '../../bridges/bridge-manage';
 import '../../App.css'
-import { Table, Header } from 'semantic-ui-react'
 import { Link  } from "react-router-dom";
 
 class ListPage extends Component {
@@ -27,75 +26,98 @@ class ListPage extends Component {
   }
 
   tableAllPage = () => (
-    <Table celled>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell>Page</Table.HeaderCell>
-          <Table.HeaderCell>Link</Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-  
-      <Table.Body>
-        <Table.Row>
-          <Table.Cell>Home Page</Table.Cell>
-          <Table.Cell>
-            <Link to="/home-page">Link</Link>
-          </Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>List Quiz</Table.Cell>
-          <Table.Cell>
-            <Link to="/list-quiz">Link</Link>
-          </Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>Login</Table.Cell>
-          <Table.Cell>
-            <Link to="/login">Link</Link>
-          </Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>Quiz Page</Table.Cell>
-          <Table.Cell>
-            <Link to="/quiz">Link</Link>
-          </Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>Flash Card</Table.Cell>
-          <Table.Cell>
-            <Link to="/flashcard">Link</Link>
-          </Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>Learn Write</Table.Cell>
-          <Table.Cell>
-            <Link to="/learn-write">Link</Link>
-          </Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>Test</Table.Cell>
-          <Table.Cell>
-            <Link to="/test">Link</Link>
-          </Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>True/ False</Table.Cell>
-          <Table.Cell>
-            <Link to="/truefalse">Link</Link>
-          </Table.Cell>
-        </Table.Row>
-      </Table.Body>
-    </Table>
+    <table className="table">
+      <thead>
+        <tr>
+          <th scope="col">STT</th>
+          <th scope="col">Page</th>
+          <th scope="col">Link</th>
+          <th scope="col">Assign</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Trang thông tin</td>
+          <td><Link to="/home-page">Link</Link></td>
+          <td>Hòa, Hiệp</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Danh sách quiz của một user</td>
+          <td><Link to="/list-quiz">Link</Link></td>
+          <td>Hiệp, Hoàng </td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Trang chủ của user</td>
+          <td><Link to="/home-page-user">Link</Link></td>
+          <td>Hiệp, Hoàng </td>
+        </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>Trang chủ của guest</td>
+          <td><Link to="/home-page-guest">Link</Link></td>
+          <td>Hiệp, Hoàng </td>
+        </tr>
+        <tr>
+          <th scope="row">5</th>
+          <td>Đăng nhập</td>
+          <td><Link to="/login">Link</Link></td>
+          <td>Hiệp</td>
+        </tr>
+        <tr>
+          <th scope="row">6</th>
+          <td>Đăng ký</td>
+          <td><Link to="/register">Link</Link></td>
+          <td>Trang</td>
+        </tr>
+        <tr>
+          <th scope="row">7</th>
+          <td>Trang cá nhân</td>
+          <td><Link to="/profile">Link</Link></td>
+          <td>Trang</td>
+        </tr>
+        <tr>
+          <th scope="row">8</th>
+          <td>Trang Quiz</td>
+          <td><Link to="/quiz">Link</Link></td>
+          <td>Nhật Hòa</td>
+        </tr>
+        <tr>
+          <th scope="row">9</th>
+          <td>FlashCard</td>
+          <td><Link to="/flashcard">Link</Link></td>
+          <td>Hòa, Hiệp</td>
+        </tr>
+        <tr>
+          <th scope="row">10</th>
+          <td>Học Write</td>
+          <td><Link to="/flashcard">Link</Link></td>
+          <td>Hòa, Hiệp, Nhật</td>
+        </tr>
+        <tr>
+          <th scope="row">11</th>
+          <td>Test</td>
+          <td><Link to="/test">Link</Link></td>
+          <td>Hòa, Hiệp, Nhật</td>
+        </tr>
+        <tr>
+          <th scope="row">12</th>
+          <td>Test True/False</td>
+          <td><Link to="/truefalse">Link</Link></td>
+          <td>Hòa, Hiệp, Nhật</td>
+        </tr>
+      </tbody>
+    </table>
   )
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <Header as='h1'>Quiz Sharp</Header>
-          <p>
-            { this.tableAllPage() }
-          </p>
+          <h1>Quiz Sharp</h1>
+          { this.tableAllPage() }
         </header>
       </div>
     )

@@ -10,7 +10,7 @@ const WrapContent = styled.div`
   }
 `
 
-function ContentLogin() {
+function ContentProfile() {
   return(
     <WrapContent>
       <h1 className="content">
@@ -20,11 +20,11 @@ function ContentLogin() {
   )
 }
 
-function LoginPage() {
+function ProfilePage() {
   return(
-    <SimpleLayout content={ <ContentLogin /> } />
+    <SimpleLayout content={ <ContentProfile /> } />
   )
 }
 
-export default LoginPage
+export default ProfilePage
   

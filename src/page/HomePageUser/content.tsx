@@ -1,5 +1,4 @@
 import React from 'react'
-import { SimpleLayout } from '../../layout'
 import styled from 'styled-components'
 
 const WrapContent = styled.div`
@@ -10,21 +9,14 @@ const WrapContent = styled.div`
   }
 `
 
-function ContentLogin() {
+function Content() {
   return(
     <WrapContent>
-      <h1 className="content">
+      <p className="content">
         Hiệp
-      </h1>
+      </p>
     </WrapContent>
   )
 }
 
-function LoginPage() {
-  return(
-    <SimpleLayout content={ <ContentLogin /> } />
-  )
-}
-
-export default LoginPage
-  
+export default Content

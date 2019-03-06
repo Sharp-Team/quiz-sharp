@@ -21,9 +21,8 @@ const WrapContent = styled.div`
   }
 `
 
-class ContentHomePage extends Component {
-  render() {
-    return (
+function ContentHomePage() {
+  return (
     <WrapContent>
       <div className="wrap-content">
         <div className="container-fluid">
@@ -43,7 +42,8 @@ class ContentHomePage extends Component {
           </div>
         </div>
       </div>
-    </WrapContent>)
-  }
+    </WrapContent>
+  )
 }
+
 export default ContentHomePage
