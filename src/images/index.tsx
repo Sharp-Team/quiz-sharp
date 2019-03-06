@@ -26,4 +26,12 @@ export { default as IconMore } from './icon/more.png'
 
 export { default as IconFolder } from './icon/folder.png'
 
+export { default as IconWrite } from './icon/write.png'
+
+export { default as IconTest } from './icon/test.png'
+
+export { default as IconCard } from './icon/card.png'
+
+export { default as IconMultipleChoice } from './icon/multiplechoice.png'
+
 export { default as Avatar } from './avatar.png'
