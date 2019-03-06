@@ -8,7 +8,7 @@ const WrapNav = styled.div`
     }
 
     .navbar {
-      padding: 1.5rem 8rem;
+      padding: 1.1rem 8rem;
       .navbar-brand {
         color: #fff;
         margin-left: 1rem;
@@ -22,7 +22,8 @@ const WrapNav = styled.div`
     .has-search {
       .form-control {
         padding-left: 2.375rem;
-        padding-bottom: 8px;
+        padding-top: 4px;
+        padding-bottom: 4px;
       }
       .form-control-feedback {
         position: absolute;
@@ -44,13 +45,13 @@ const WrapNav = styled.div`
     }
 
     .navi-active {
-      width: 30rem;
+      width: 20rem;
     }
 
     .btn-login {
       background: transparent;
       color: #f5f5f5;
-      font-size: 25px;
+      font-size: 20px;
       padding: 0.1rem 2rem;
     }
 
