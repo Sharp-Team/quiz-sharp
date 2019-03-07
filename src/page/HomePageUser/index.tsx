@@ -1,12 +1,12 @@
 import React from 'react'
-import { SmallLayout } from '../../layout'
+import { FullLayout } from '../../layout'
 import { SideBarFull } from '../../components'
 import Content from './content'
 
 
 function HomePageUser() {
   return(
-    <SmallLayout
+    <FullLayout
       sidebar={<SideBarFull />}
       content={<Content />}
     />

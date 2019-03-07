@@ -1,17 +1,17 @@
 import React from 'react';
 import { Navigation } from '../components';
 
-function FullLayout({ SideBar, Content }: any) {
+function FullLayout({ sidebar, content }: any) {
   return (
     <div>
       <Navigation />
       <div className="container-fluid">
         <div className="row">
-          <div className="col-3">
-            {SideBar}
+          <div className="col-2">
+            {sidebar}
           </div>
-          <div className="col-9">
-            {Content}
+          <div className="col-10">
+            {content}
           </div>
         </div>
       </div>

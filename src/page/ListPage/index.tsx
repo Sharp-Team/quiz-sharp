@@ -14,8 +14,8 @@ class ListPage extends Component {
     data: [
       { id: '1', page: 'Trang thông tin', link: 'home-page', assign: 'Hòa, Hiệp', status: 'bg-success' },
       { id: '2', page: 'Danh sách quiz của một user', link: 'list-quiz', assign: 'Hiệp Hòa Hoàng', status: 'bg-warning' },
-      { id: '3', page: 'Trang chủ của user', link: 'home-page-user', assign: 'Hiệp Hoàng', status: 'bg-danger' },
-      { id: '4', page: 'Trang chủ của guest', link: 'home-page-guest', assign: 'Hiệp Hoàng', status: 'bg-danger' },
+      { id: '3', page: 'Trang chủ của user', link: 'home-page-user', assign: 'Hiệp Hoàng', status: 'bg-warning' },
+      { id: '4', page: 'Trang chủ của guest', link: 'home-page-guest', assign: 'Hiệp Hoàng', status: 'bg-warning' },
       { id: '5', page: 'Đăng nhập', link: 'login', assign: 'Hiệp', status: 'bg-danger' },
       { id: '6', page: 'Đăng ký', link: 'register', assign: 'Trang', status: 'bg-danger' },
       { id: '7', page: 'Trang cá nhân', link: 'profile', assign: 'Trang', status: 'bg-danger' },
