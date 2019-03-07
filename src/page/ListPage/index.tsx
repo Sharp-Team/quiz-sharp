@@ -10,7 +10,21 @@ class ListPage extends Component {
   _userBridge: UserBridge;
 
   state = {
-    listUser: null
+    listUser: null,
+    data: [
+      { id: '1', page: 'Trang thông tin', link: 'home-page', assign: 'Hòa, Hiệp', status: 'bg-success' },
+      { id: '2', page: 'Danh sách quiz của một user', link: 'list-quiz', assign: 'Hiệp Hòa Hoàng', status: 'bg-warning' },
+      { id: '3', page: 'Trang chủ của user', link: 'home-page-user', assign: 'Hiệp Hoàng', status: 'bg-danger' },
+      { id: '4', page: 'Trang chủ của guest', link: 'home-page-guest', assign: 'Hiệp Hoàng', status: 'bg-danger' },
+      { id: '5', page: 'Đăng nhập', link: 'login', assign: 'Hiệp', status: 'bg-danger' },
+      { id: '6', page: 'Đăng ký', link: 'register', assign: 'Trang', status: 'bg-danger' },
+      { id: '7', page: 'Trang cá nhân', link: 'profile', assign: 'Trang', status: 'bg-danger' },
+      { id: '8', page: 'Trang Quiz', link: 'quiz', assign: 'Hòa Nhật', status: 'bg-warning' },
+      { id: '9', page: 'FlashCard', link: 'flashcard', assign: 'Hòa', status: 'bg-danger' },
+      { id: '10', page: 'Học Write', link: 'learn-write', assign: 'Hòa, Nhật', status: 'bg-danger' },
+      { id: '11', page: 'Test', link: 'test', assign: 'Hiệp, Nhật', status: 'bg-danger' },
+      { id: '12', page: 'Test True/False', link: 'truefalse', assign: 'Hiệp, Nhật', status: 'bg-danger' },
+    ]
   }
 
   constructor(props: any) {
@@ -36,78 +50,16 @@ class ListPage extends Component {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Trang thông tin</td>
-          <td><Link to="/home-page">Link</Link></td>
-          <td>Hòa, Hiệp</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Danh sách quiz của một user</td>
-          <td><Link to="/list-quiz">Link</Link></td>
-          <td>Hiệp, Hoàng, Hòa </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Trang chủ của user</td>
-          <td><Link to="/home-page-user">Link</Link></td>
-          <td>Hiệp, Hoàng </td>
-        </tr>
-        <tr>
-          <th scope="row">4</th>
-          <td>Trang chủ của guest</td>
-          <td><Link to="/home-page-guest">Link</Link></td>
-          <td>Hiệp, Hoàng </td>
-        </tr>
-        <tr>
-          <th scope="row">5</th>
-          <td>Đăng nhập</td>
-          <td><Link to="/login">Link</Link></td>
-          <td>Hiệp</td>
-        </tr>
-        <tr>
-          <th scope="row">6</th>
-          <td>Đăng ký</td>
-          <td><Link to="/register">Link</Link></td>
-          <td>Trang</td>
-        </tr>
-        <tr>
-          <th scope="row">7</th>
-          <td>Trang cá nhân</td>
-          <td><Link to="/profile">Link</Link></td>
-          <td>Trang</td>
-        </tr>
-        <tr>
-          <th scope="row">8</th>
-          <td>Trang Quiz</td>
-          <td><Link to="/quiz">Link</Link></td>
-          <td>Nhật Hòa</td>
-        </tr>
-        <tr>
-          <th scope="row">9</th>
-          <td>FlashCard</td>
-          <td><Link to="/flashcard">Link</Link></td>
-          <td>Hòa, Hiệp</td>
-        </tr>
-        <tr>
-          <th scope="row">10</th>
-          <td>Học Write</td>
-          <td><Link to="/flashcard">Link</Link></td>
-          <td>Hòa, Hiệp, Nhật</td>
-        </tr>
-        <tr>
-          <th scope="row">11</th>
-          <td>Test</td>
-          <td><Link to="/test">Link</Link></td>
-          <td>Hòa, Hiệp, Nhật</td>
-        </tr>
-        <tr>
-          <th scope="row">12</th>
-          <td>Test True/False</td>
-          <td><Link to="/truefalse">Link</Link></td>
-          <td>Hòa, Hiệp, Nhật</td>
-        </tr>
+          {
+            this.state.data.map((item: any) => 
+            <tr className={`${item.status} text-white`}>
+              <th scope="row">{item.id}</th>
+              <td>{item.page}</td>
+              <td><Link to={`/${item.link}`}>Link</Link></td>
+              <td>{item.assign}</td>
+            </tr>
+            )
+          }
       </tbody>
     </table>
   )
