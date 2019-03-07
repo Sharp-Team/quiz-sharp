@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import {
   IconShare,
-  IconEditPink,
+  IconEdit,
   IconInformation,
   IconFolder,
   IconMore,
@@ -125,7 +125,7 @@ function Content() {
             />
             <img
               className="image-icon"
-              src={IconEditPink}
+              src={IconEdit}
               alt="icon edit"
             />
             <img
