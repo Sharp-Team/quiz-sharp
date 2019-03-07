@@ -9,7 +9,7 @@ const WrapContent = styled.div`
     height: 100vh;
     .content-right {
       background-color: #FFFFFF;
-      margin-bottom: 3rem;
+      margin-bottom: 1.5rem;
       box-shadow: 0 2px 15px grey;
       border-radius: 5px;
       .my-card {
@@ -30,29 +30,30 @@ const WrapContent = styled.div`
           padding-bottom: 1rem;
           .wrap-avatar {
             .img-avatar {
-              height: 50px;
-              width: 50px;
+              height: 30px;
+              width: 30px;
               border-radius: 50%;
             }
             .username {
               color: #F100A8;
-              font-size: 20px;
+              font-size: 0.9rem;
               font-weight: bold;
               padding-left: 10px;
             }
           }
           .wrap-terms {
-            padding-top: 10px;
             position: absolute;
             left: 30%;
             .img-bookmark {
-              padding-bottom: 5px;
+              width: 10px;
             }
             .text-count {
               font-weight: bold;
               padding-left: 5px;
               color: #4C4C4C;
-              font-size: 18px;
+              font-size: 0.9rem;
+              height: 30px;
+              line-height: 30px;
             }
           }
           .wrap-date {
@@ -60,11 +61,11 @@ const WrapContent = styled.div`
             right: 10%;
             bottom: 18%;
             .img-date {
-              padding-bottom: 5px;
+              width: 13px;
             }
-            span.text-date {
+            .text-date {
               padding-left: 5px;
-              font-size: 18px;
+              font-size: 0.9rem;
               color: #9A9A9A;
               padding-top: 5px;
             }
