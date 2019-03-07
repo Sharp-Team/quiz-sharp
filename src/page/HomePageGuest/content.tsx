@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import bookmark from '../../images/bookmark.png'
-import date from '../../images/clock.png'
+import { Link } from 'react-router-dom'
+import {
+  IconBookMark as bookmark,
+  IconTime as date
+} from '../../images'
 
 const WrapContent = styled.div`
   .wrap-all {
@@ -12,6 +15,9 @@ const WrapContent = styled.div`
       margin-bottom: 1.5rem;
       box-shadow: 0 2px 15px grey;
       border-radius: 5px;
+      &:hover {
+        text-decoration: none;
+      }
       .my-card {
         padding-left: 3rem;
         padding-right: 10rem;
@@ -43,7 +49,7 @@ const WrapContent = styled.div`
           }
           .wrap-terms {
             position: absolute;
-            left: 30%;
+            left: 40%;
             .img-bookmark {
               width: 10px;
             }
@@ -89,28 +95,40 @@ function ContentQuizPage() {
       <div className="wrap-all">
         <div className="container-fluid">
           <div className="row">
-            {cards.map((card) => 
-              <div className="col-12 content-right">
-                <div className="my-card">
-                  <div className="title-card">
-                    <h4>{card.title}</h4>
+            {cards.map((card) =>
+            <Link
+              to={`/${card.id}`}
+              className="col-12 content-right"
+              key={card.id}>
+                  <div className="my-card">
+                    <div className="title-card">
+                      <h4>{card.title}</h4>
+                    </div>
+                    <div className="info-card">
+                      <div className="wrap-avatar">
+                        <img
+                          src={require(`../../images/${card.img}`)}
+                          alt="image card"
+                          className="img-avatar"/>
+                        <span className="username">{card.username}</span>
+                      </div>
+                      <div className="wrap-terms">
+                        <img
+                          src={bookmark}
+                          alt="icon bookmark"
+                          className="img-bookmark"/>
+                        <span className="text-count">{card.bookmark}</span>
+                      </div>
+                      <div className="wrap-date">
+                        <img
+                          src={date}
+                          alt="icon date"
+                          className="img-date"/>
+                        <span className="text-date">{card.date}</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="info-card">
-                    <div className="wrap-avatar">
-                      <img src={require(`../../images/${card.img}`)} alt="" className="img-avatar"/>
-                      <span className="username">{card.username}</span>
-                    </div>
-                    <div className="wrap-terms">
-                      <img src={bookmark} alt="" className="img-bookmark"/>
-                      <span className="text-count">{card.bookmark}</span>
-                    </div>
-                    <div className="wrap-date">
-                      <img src={date} alt="" className="img-date"/>
-                      <span className="text-date">{card.date}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              </Link>
             )}
           </div>
         </div>
