@@ -1,32 +1,37 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import {
-  IconBookMark as bookmark,
-  IconTime as date
-} from '../images'
 
 const WrapContent = styled.div`
-  .content {
-    	padding: 50px;
+  .box {
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 15px grey;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-top: 3rem;
 
-    .box {
-      border: 0px solid;
-      background-color: #FFFFFF;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 2px 10px grey;
-      border-radius: 5px;
-      width: 150px;
-      height: auto;
+    .link-nav {
+      text-decoration: none;
+    }
 
-      .box-content {
-        padding-top: 6px;
-        padding-left: 8px;
-        background-color: #FFFFFF;
-        width: 150px;
-        height: 45px;
+    .box-content {
+      height: 37px;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 3px;
+      padding-right: 10px;
+      color: #525252;
+      .text-nav {
+        margin-left: 25px;
+        line-height: 37px;
+        text-decoration: none;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+      &:hover {
+        box-shadow: 0 2px 15px grey;
         border-radius: 5px;
-        color: grey;
       }
     }
   }
@@ -35,23 +40,31 @@ const WrapContent = styled.div`
 function SideBar() {
   return (
     <WrapContent>
-      <div className="content">
-        <div className="col-lg">
-          <div className="box">
-            <Link to="#">
-              <div className="box-content"><img src={require('../images/icon/profile.png')}></img>  My Quiz</div>
-            </Link>
-            <Link to="#">
-              <div className="box-content"><img src={require('../images/icon/global.png')}></img>  Discover</div>
-            </Link>
-            <Link to="#">
-              <div className="box-content"><img src={require('../images/icon/setting.png')}></img>  Settings</div>
-            </Link>
-            <Link to="#">
-              <div className="box-content"><img src={require('../images/icon/infor.png')}></img>  Support</div>
-            </Link>
+      <div className="box">
+        <Link to="#" className="link-nav">
+          <div className="box-content">
+            <img className="image-nav" src={require('../images/icon/profile.png')} />
+            <span className="text-nav">My Quiz</span>
           </div>
-        </div>
+        </Link>
+        <Link to="#" className="link-nav">
+          <div className="box-content">
+            <img className="image-nav" src={require('../images/icon/global.png')} />
+            <span className="text-nav">Discover</span>
+          </div>
+        </Link>
+        <Link to="#" className="link-nav">
+          <div className="box-content">
+            <img className="image-nav" src={require('../images/icon/setting.png')} />
+            <span className="text-nav">Settings</span>
+          </div>
+        </Link>
+        <Link to="#" className="link-nav">
+          <div className="box-content">
+            <img className="image-nav" src={require('../images/icon/infor.png')} />
+            <span className="text-nav">Support</span>
+          </div>
+        </Link>
       </div>
     </WrapContent>
   )

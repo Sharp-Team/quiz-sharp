@@ -9,15 +9,15 @@ const WrapContent = styled.div`
     box-shadow: 0 2px 15px grey;
     border-radius: 5px;
     padding: 30px 50px;
-    margin: 20px 0;
+    margin-top: 3rem;
     .title {
-        margin-bottom: 10px;
+      margin-bottom: 10px;
     }
     .list-icon {
-        .image-icon {
-            width: 18px;
-            margin-right: 8px;
-        }
+      .image-icon {
+        width: 18px;
+        margin-right: 8px;
+      }
     }
   }
 

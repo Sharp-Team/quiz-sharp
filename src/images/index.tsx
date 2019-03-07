@@ -4,9 +4,9 @@ export { default as IconCreate } from './icon/create.png'
 
 export { default as IconDelete } from './icon/delete.png'
 
-export { default as IconEdit } from './icon/edit.png'
+export { default as IconEditGray } from './icon/edit.png'
 
-export { default as IconEditPink } from './icon/edit2.png'
+export { default as IconEdit } from './icon/edit2.png'
 
 export { default as IconGlobal } from './icon/global.png'
 
@@ -17,6 +17,8 @@ export { default as IconPlus } from './icon/plus.png'
 export { default as IconProfile } from './icon/profile.png'
 
 export { default as IconSetting } from './icon/setting.png'
+
+export { default as IconSettingGray } from './icon/setting2.png'
 
 export { default as IconShare } from './icon/share.png'
 
