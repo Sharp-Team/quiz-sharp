@@ -32,7 +32,7 @@ function Content({ title }: any) {
   return(
     <WrapContent>
       <div className="wrap-box">
-        <h4 className="title">{ title }</h4>
+        <h3 className="title">{ title }</h3>
         <div className="list-icon">
             <Link to="#">
                 <img
