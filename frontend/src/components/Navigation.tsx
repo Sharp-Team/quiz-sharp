@@ -106,7 +106,7 @@ class Navigaion extends Component {
               </li>
             </ul>
             <div className="form-inline my-2 my-lg-0">
-              <button className="btn btn-login my-2 my-sm-0 btn-login" type="submit">
+              <button className="btn btn-login my-2 my-sm-0 btn-login" type="submit" data-toggle="modal" data-target="#loginModal">
                 Log In
               </button>
               <button className="btn btn-signin my-2 my-sm-0 btn-signup" type="submit">
