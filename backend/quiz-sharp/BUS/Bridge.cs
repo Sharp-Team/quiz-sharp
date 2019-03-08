@@ -12,7 +12,8 @@ namespace quiz_sharp.Bridges
         {
             return new List<object>()
             {
-                new UserBridge()
+                new UserBridge(),
+                new QuizBridge()
             };
         }
     }

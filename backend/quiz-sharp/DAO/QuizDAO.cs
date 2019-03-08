@@ -8,25 +8,20 @@ using System.Threading.Tasks;
 
 namespace quiz_sharp.DAO
 {
-    class UserDAO
+    class QuizDAO
     {
-        public UserDAO()
+        public List<Quiz> getListQuiz()
         {
-
-        }
-
-        public List<User> getListUser()
-        {
-            List<User> listUser = new List<User>();
-            string query = "select * from [User]";
+            List<Quiz> listQuiz = new List<Quiz>();
+            string query = "select * from [Quiz]";
             DataTable data = DataProvider.Instance.ExecuteQuery(query, null);
             foreach (DataRow item in data.Rows)
             {
-                User user = new User(item);
-                listUser.Add(user);
+                Quiz quiz = new Quiz(item);
+                listQuiz.Add(quiz);
             }
 
-            return listUser;
+            return listQuiz;
         }
     }
 }

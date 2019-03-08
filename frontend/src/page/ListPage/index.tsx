@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { UserBridge } from '../../bridges/bridges';
+import { UserBridge, QuizBridge } from '../../bridges/bridges';
 // import { User } from './types/User';
 import BridgeManager, { Bridge } from '../../bridges/bridge-manage';
 import '../../App.css'
@@ -8,6 +8,8 @@ import { Link  } from "react-router-dom";
 class ListPage extends Component {
   // @ts-ignore 2564
   _userBridge: UserBridge;
+  // @ts-ignore 2564
+  _quizBridge: QuizBridge;
 
   state = {
     listUser: null,
@@ -35,8 +37,14 @@ class ListPage extends Component {
     // this._userBridge = await BridgeManager.getBridge<UserBridge>(
     //   'userBridge'
     // );
-    // const user = await this._userBridge.getAllStudent();
+    // const user = await this._userBridge.getAllUser();
     // console.log({ user })
+
+    // this._quizBridge = await BridgeManager.getBridge<QuizBridge>(
+    //   'quizBridge'
+    // );
+    // const quiz = await this._quizBridge.getAllQuiz();
+    // console.log({ quiz })
   }
 
   tableAllPage = () => (

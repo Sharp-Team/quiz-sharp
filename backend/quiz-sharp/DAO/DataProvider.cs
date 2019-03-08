@@ -31,7 +31,7 @@ namespace quiz_sharp.DAO
 
         private DataProvider()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["DemoUser"].ConnectionString;
+            connectionString = ConfigurationManager.ConnectionStrings["QuizSharp"].ConnectionString;
         }
 
         public DataTable ExecuteQuery(string query, object[] parameter = null)

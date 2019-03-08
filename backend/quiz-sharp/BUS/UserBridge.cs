@@ -11,10 +11,10 @@ namespace quiz_sharp.Bridges
 {
     class UserBridge
     {
-        public List<User> GetAllStudent()
+        public List<User> GetAllUser()
         {
             UserDAO userDao = new UserDAO();
-            List<User> result = userDao.getListStudent();
+            List<User> result = userDao.getListUser();
             return result;
         }
     }
