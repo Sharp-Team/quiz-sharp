@@ -30,16 +30,18 @@ const WrapContent = styled.div`
         .wrap-input {
           margin-top: 20px;
           .wrap-label {
-            color: #7F7F7F;
-            font-size: 15px;
-            padding-top: 5px;
+            color: #505050;
+            font-size: 16px;
+            height: 34px;
+            line-height: 34px;
           }
           .col-9 {
             .input-custom {
               width: 100%;
               border-radius: 30px;
-              border-width: 0.5px;
+              box-shadow: 0 2px 6px grey;
               padding: 5px 20px;
+              border: 0;
             }
           }
         }
@@ -47,6 +49,7 @@ const WrapContent = styled.div`
           float: right;
           color: #2BD900;
           font-size: 12px;
+          margin-top: 5px;
         }
         .my-btn {
           width: 100%;
