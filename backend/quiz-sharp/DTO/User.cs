@@ -13,7 +13,7 @@ namespace quiz_sharp.DTO
         public String username { get; set; }
         public String password { get; set; }
         public String avatar_url { get; set; }
-        public String gmail { get; set; }
+        public String email { get; set; }
         public DateTime dob { get; set; }
 
         public User(DataRow dr)
@@ -22,7 +22,7 @@ namespace quiz_sharp.DTO
             username = dr["username"].ToString();
             password = dr["password"].ToString();
             avatar_url = dr["avatar_url"].ToString();
-            gmail = dr["gmail"].ToString();
+            email = dr["email"].ToString();
             dob = Convert.ToDateTime(dr["dob"]);
         }
     }

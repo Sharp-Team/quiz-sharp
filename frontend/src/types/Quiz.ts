@@ -1,6 +1,5 @@
 export default interface User {
     id: number,
     term: string,
-    definition: string,
-    createdDate: any
+    definition: string
 }

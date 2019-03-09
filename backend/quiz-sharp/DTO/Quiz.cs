@@ -12,14 +12,12 @@ namespace quiz_sharp.DTO
         public int id { get; set; }
         public String term { get; set; }
         public String definition { get; set; }
-        public DateTime createdDate { get; set; }
 
         public Quiz(DataRow dr)
         {
             id = Int32.Parse(dr["id"].ToString());
             term = dr["term"].ToString();
             definition = dr["definition"].ToString();
-            createdDate = Convert.ToDateTime(dr["createdDate"]);
         }
     }
 }

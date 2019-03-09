@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-import { UserBridge, QuizBridge } from '../../bridges/bridges';
-// import { User } from './types/User';
-import BridgeManager, { Bridge } from '../../bridges/bridge-manage';
+import { UserBridge, QuizBridge, SetStudyBridge } from '../../bridges/bridges';
+import BridgeManager from '../../bridges/bridge-manage';
 import '../../App.css'
-import { Link  } from "react-router-dom";
+import { Link  } from "react-router-dom"
 
 class ListPage extends Component {
   // @ts-ignore 2564
   _userBridge: UserBridge;
   // @ts-ignore 2564
   _quizBridge: QuizBridge;
+  // @ts-ignore 2564
+  _setStudyBridge: SetStudyBridge;
 
   state = {
     listUser: null,
@@ -34,17 +35,20 @@ class ListPage extends Component {
   }
 
   async componentDidMount() {
-    // this._userBridge = await BridgeManager.getBridge<UserBridge>(
-    //   'userBridge'
-    // );
-    // const user = await this._userBridge.getAllUser();
-    // console.log({ user })
+    this._userBridge = await BridgeManager.getBridge<UserBridge>(
+      'userBridge'
+    );
 
-    // this._quizBridge = await BridgeManager.getBridge<QuizBridge>(
-    //   'quizBridge'
-    // );
-    // const quiz = await this._quizBridge.getAllQuiz();
-    // console.log({ quiz })
+    this._quizBridge = await BridgeManager.getBridge<QuizBridge>(
+      'quizBridge'
+    );
+
+    this._setStudyBridge = await BridgeManager.getBridge<SetStudyBridge>(
+      'setStudyBridge'
+    );
+
+    const quiz = await this._quizBridge.getListQuizByID(1)
+    console.log({ quiz })
   }
 
   tableAllPage = () => (

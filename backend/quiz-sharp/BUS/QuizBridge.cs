@@ -10,11 +10,39 @@ namespace quiz_sharp.Bridges
 {
     class QuizBridge
     {
-        public List<Quiz> GetAllQuiz()
+        public List<Quiz> GetListQuizByID(Int64 idSetStudy)
         {
             QuizDAO userDao = new QuizDAO();
-            List<Quiz> result = userDao.getListQuiz();
+            List<Quiz> result = userDao.getListQuizByID(idSetStudy);
             return result;
+        }
+
+        public String EditQuiz(Int64 id, String term, String definition)
+        {
+            try
+            {
+                QuizDAO userDao = new QuizDAO();
+                userDao.editQuiz(id, term, definition);
+                return "Edit successful";
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
+        }
+
+        public String DeleteQuiz(Int64 id)
+        {
+            try
+            {
+                QuizDAO userDao = new QuizDAO();
+                userDao.deleteQuiz(id);
+                return "Delete successful";
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
         }
     }
 }

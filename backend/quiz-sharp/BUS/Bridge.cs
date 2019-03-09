@@ -1,4 +1,5 @@
-﻿using System;
+﻿using quiz_sharp.BUS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,8 @@ namespace quiz_sharp.Bridges
             return new List<object>()
             {
                 new UserBridge(),
-                new QuizBridge()
+                new QuizBridge(),
+                new SetStudyBridge()
             };
         }
     }
