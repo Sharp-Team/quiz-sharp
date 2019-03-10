@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace quiz_sharp.DAO
 {
@@ -88,7 +89,18 @@ namespace quiz_sharp.DAO
 
         public void deleteSetStudy(Int64 id)
         {
-            // Hoàng
+            try
+            {
+                String query = "delete from Set_Study_Quiz where set_study_id =" + id +
+                                "delete from Set_Study where id =" + id;
+                SqlCommand cmd = new SqlCommand(query);
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void editSetStudy(Int64 id, String title, DateTime updatedDate, List<Quiz> listQuiz)
