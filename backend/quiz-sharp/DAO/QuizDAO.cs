@@ -32,7 +32,17 @@ namespace quiz_sharp.DAO
 
         public void editQuiz(Int64 id, String term, String definition)
         {
-            // Hoàng
+            try
+            {
+                String query = "update Quiz " +
+                                "set term = '" + term + "', [definition] = '" + definition + "'" +
+                                "where id =" + id;
+                int editQuiz = DataProvider.Instance.ExecuteNonquery(query);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void deleteQuiz(Int64 id)
