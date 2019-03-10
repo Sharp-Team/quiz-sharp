@@ -40,7 +40,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged --no-verify"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
