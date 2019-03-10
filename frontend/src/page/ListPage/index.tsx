@@ -105,7 +105,7 @@ class ListPage extends Component {
   constructor(props: any) {
     super(props)
   }
-
+  /*
   async componentDidMount() {
     this._userBridge = await BridgeManager.getBridge<UserBridge>('userBridge')
 
@@ -118,7 +118,7 @@ class ListPage extends Component {
     const quiz = await this._quizBridge.getListQuizByID(1)
     console.log({ quiz })
   }
-
+  */
   tableAllPage = () => (
     <table className="table">
       <thead>
