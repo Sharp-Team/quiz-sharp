@@ -1,7 +1,7 @@
 export default interface SetStudy {
-    id: number,
-    username: string,
-    title: string,
-    term: number,
-    createdDate: any
+  id: number
+  username: string
+  title: string
+  term: number
+  createdDate: any
 }

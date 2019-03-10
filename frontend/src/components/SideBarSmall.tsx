@@ -7,7 +7,7 @@ import {
   IconSetting,
   IconInformation,
   IconSettingGray,
-  IconEditGray
+  IconEditGray,
 } from '../images'
 
 const WrapContent = styled.div`
@@ -41,26 +41,38 @@ function SideBar() {
       <div className="content">
         <div className="box">
           <Link to="#">
-            <div className="box-content"><img src={IconProfile}></img></div>
+            <div className="box-content">
+              <img src={IconProfile} />
+            </div>
           </Link>
           <Link to="#">
-            <div className="box-content"><img src={IconGlobal}></img></div>
+            <div className="box-content">
+              <img src={IconGlobal} />
+            </div>
           </Link>
           <Link to="#">
-            <div className="box-content"><img src={IconSetting}></img></div>
+            <div className="box-content">
+              <img src={IconSetting} />
+            </div>
           </Link>
           <Link to="#">
-            <div className="box-content"><img src={IconInformation}></img></div>
+            <div className="box-content">
+              <img src={IconInformation} />
+            </div>
           </Link>
         </div>
       </div>
       <div className="content">
         <div className="box">
           <Link to="#">
-            <div className="box-content"><img src={IconEditGray}></img></div>
+            <div className="box-content">
+              <img src={IconEditGray} />
+            </div>
           </Link>
           <Link to="#">
-            <div className="box-content"><img src={IconSettingGray}></img></div>
+            <div className="box-content">
+              <img src={IconSettingGray} />
+            </div>
           </Link>
         </div>
       </div>

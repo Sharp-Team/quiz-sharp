@@ -2,7 +2,7 @@ import React from 'react'
 import { SimpleLayout } from '../../layout'
 import styled from 'styled-components'
 import IconClose from '../../images/icon/closemodal.png'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 const WrapContent = styled.div`
   .modal-content {
@@ -10,11 +10,11 @@ const WrapContent = styled.div`
     .modal-header {
       border-top-left-radius: 25px;
       border-top-right-radius: 25px;
-      background-color: #F100A8;
+      background-color: #f100a8;
       .modal-title {
         font-size: 20px;
         font-weight: bold;
-        color: #FFFFFF;
+        color: #ffffff;
         left: 5%;
       }
       .close {
@@ -47,14 +47,14 @@ const WrapContent = styled.div`
         }
         .wrap-forgot {
           float: right;
-          color: #2BD900;
+          color: #2bd900;
           font-size: 12px;
           margin-top: 5px;
         }
         .my-btn {
           width: 100%;
           border-radius: 50px;
-          background-color: #F100A8; 
+          background-color: #f100a8;
           border: none;
           color: white;
           padding-top: 10px;
@@ -73,15 +73,27 @@ const WrapContent = styled.div`
 `
 
 function ContentLogin() {
-  return(
+  return (
     <WrapContent>
-      <div className="modal fade" id="loginModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div
+        className="modal fade"
+        id="loginModal"
+        tabIndex={-1}
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
             <div className="modal-header">
               <h4 className="modal-title">Log in</h4>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <img src={IconClose} alt="close" className="custom-close"/>
+              <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <img src={IconClose} alt="close" className="custom-close" />
               </button>
             </div>
             <div className="modal-body">
@@ -90,17 +102,19 @@ function ContentLogin() {
                   <div className="col-3 wrap-label">User name</div>
                   <div className="col-9">
                     <input type="text" className="input-custom" />
-                  </div>      
+                  </div>
                 </div>
                 <div className="row wrap-input">
                   <div className="col-3 wrap-label">Password</div>
                   <div className="col-9">
                     <input type="password" className="input-custom" />
-                  </div>      
+                  </div>
                 </div>
-                <Link to="#" className="wrap-forgot">Forgot password?</Link>
+                <Link to="#" className="wrap-forgot">
+                  Forgot password?
+                </Link>
                 <button className="my-btn">Log in</button>
-              </div>  
+              </div>
             </div>
           </div>
         </div>
@@ -110,10 +124,7 @@ function ContentLogin() {
 }
 
 function LoginPage() {
-  return(
-    <SimpleLayout content={ <ContentLogin /> } />
-  )
+  return <SimpleLayout content={<ContentLogin />} />
 }
 
 export default LoginPage
-  

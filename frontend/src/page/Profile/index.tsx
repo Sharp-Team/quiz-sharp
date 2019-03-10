@@ -11,20 +11,15 @@ const WrapContent = styled.div`
 `
 
 function ContentProfile() {
-  return(
+  return (
     <WrapContent>
-      <p className="content">
-        Trang
-      </p>
+      <p className="content">Trang</p>
     </WrapContent>
   )
 }
 
 function ProfilePage() {
-  return(
-    <SimpleLayout content={ <ContentProfile /> } />
-  )
+  return <SimpleLayout content={<ContentProfile />} />
 }
 
 export default ProfilePage
-  

@@ -11,19 +11,15 @@ const WrapContent = styled.div`
 `
 
 function ContentRegister() {
-  return(
+  return (
     <WrapContent>
-      <p className="content">
-        Trang
-      </p>
+      <p className="content">Trang</p>
     </WrapContent>
   )
 }
 
 function RegisterPage() {
-  return(
-    <SimpleLayout content={ <ContentRegister /> } />
-  )
+  return <SimpleLayout content={<ContentRegister />} />
 }
 
 export default RegisterPage

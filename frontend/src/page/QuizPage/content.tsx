@@ -11,7 +11,7 @@ import {
   IconMultipleChoice,
   IconTest,
   IconWrite,
-  IconCard
+  IconCard,
 } from '../../images'
 
 const WrapContent = styled.div`
@@ -53,8 +53,8 @@ const WrapContent = styled.div`
     .list-icon {
       margin-bottom: 60px;
       .image-icon {
-          width: 18px;
-          margin-right: 10px;
+        width: 18px;
+        margin-right: 10px;
       }
     }
   }
@@ -102,46 +102,30 @@ const WrapListTerm = styled.div`
 `
 
 function Content() {
-  return(
+  return (
     <div>
       <WrapContent>
         <div className="wrap-box">
           <div className="wrap-header">
             <p className="term">7 terms</p>
-            <img className="avatar" src={Avatar} alt="avatar"/>
+            <img className="avatar" src={Avatar} alt="avatar" />
             <p className="username">Thaycacac</p>
           </div>
           <h3 className="title">Computer and the internet</h3>
           <div className="list-icon">
-            <img
-              className="image-icon"
-              src={IconFolder}
-              alt="icon folder"
-            />
-            <img
-              className="image-icon"
-              src={IconShare}
-              alt="icon share"
-            />
-            <img
-              className="image-icon"
-              src={IconEdit}
-              alt="icon edit"
-            />
+            <img className="image-icon" src={IconFolder} alt="icon folder" />
+            <img className="image-icon" src={IconShare} alt="icon share" />
+            <img className="image-icon" src={IconEdit} alt="icon edit" />
             <img
               className="image-icon"
               src={IconInformation}
               alt="icon infor"
             />
-            <img
-              className="image-icon"
-              src={IconMore}
-              alt="icon more"
-            />
+            <img className="image-icon" src={IconMore} alt="icon more" />
           </div>
         </div>
       </WrapContent>
-      
+
       <WrapFeature>
         <div className="wrap-feature row justify-content-md-center">
           <div className="one-box col-auto text-center mx-3">
@@ -149,32 +133,21 @@ function Content() {
               <img
                 className="icon-feature"
                 src={IconCard}
-                alt="icon flash card"/>
-              <p className="title-feature">
-                FlashCard
-              </p>
+                alt="icon flash card"
+              />
+              <p className="title-feature">FlashCard</p>
             </Link>
           </div>
           <div className="one-box col-auto text-center mx-3">
             <Link to="#" className="link">
-              <img
-                className="icon-feature"
-                src={IconWrite}
-                alt="icon write"/>
-              <p className="title-feature">
-                Write
-              </p>
+              <img className="icon-feature" src={IconWrite} alt="icon write" />
+              <p className="title-feature">Write</p>
             </Link>
           </div>
           <div className="one-box col-auto text-center mx-3">
             <Link to="#" className="link">
-              <img
-                className="icon-feature"
-                src={IconTest}
-                alt="icon test"/>
-              <p className="title-feature">
-                Test
-              </p>
+              <img className="icon-feature" src={IconTest} alt="icon test" />
+              <p className="title-feature">Test</p>
             </Link>
           </div>
           <div className="one-box col-auto text-center mx-3">
@@ -182,23 +155,19 @@ function Content() {
               <img
                 className="icon-feature"
                 src={IconMultipleChoice}
-                alt="icon multiple choice"/>
-              <p className="title-feature">
-                Multiple Choice
-              </p>
+                alt="icon multiple choice"
+              />
+              <p className="title-feature">Multiple Choice</p>
             </Link>
           </div>
         </div>
       </WrapFeature>
 
       <WrapListTerm>
-        <p className="content">
-          Nhật
-        </p>
+        <p className="content">Nhật</p>
       </WrapListTerm>
     </div>
   )
 }
 
 export default Content
-  

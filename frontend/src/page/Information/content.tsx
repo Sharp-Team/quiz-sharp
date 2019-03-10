@@ -37,7 +37,7 @@ function ContentHomePage() {
               </p>
             </div>
             <div className="col-6 content-right">
-              <img src={social} alt="" className="image-content"/>
+              <img src={social} alt="" className="image-content" />
             </div>
           </div>
         </div>
