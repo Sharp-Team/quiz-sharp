@@ -1,5 +1,5 @@
 export default interface User {
-    id: number,
-    term: string,
-    definition: string
+  id: number
+  term: string
+  definition: string
 }

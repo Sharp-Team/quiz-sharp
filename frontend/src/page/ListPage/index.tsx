@@ -1,51 +1,119 @@
 import React, { Component } from 'react'
-import { UserBridge, QuizBridge, SetStudyBridge } from '../../bridges/bridges';
-import BridgeManager from '../../bridges/bridge-manage';
+import { UserBridge, QuizBridge, SetStudyBridge } from '../../bridges/bridges'
+import BridgeManager from '../../bridges/bridge-manage'
 import '../../App.css'
-import { Link  } from "react-router-dom"
+import { Link } from 'react-router-dom'
 
 class ListPage extends Component {
   // @ts-ignore 2564
-  _userBridge: UserBridge;
+  _userBridge: UserBridge
   // @ts-ignore 2564
-  _quizBridge: QuizBridge;
+  _quizBridge: QuizBridge
   // @ts-ignore 2564
-  _setStudyBridge: SetStudyBridge;
+  _setStudyBridge: SetStudyBridge
 
   state = {
     listUser: null,
     data: [
-      { id: '1', page: 'Trang thông tin', link: 'home-page', assign: 'Hòa, Hiệp', status: 'bg-success' },
-      { id: '2', page: 'Danh sách quiz của một user', link: 'list-quiz', assign: 'Hiệp Hòa Hoàng', status: 'bg-warning' },
-      { id: '3', page: 'Trang chủ của user', link: 'home-page-user', assign: 'Hiệp Hoàng', status: 'bg-warning' },
-      { id: '4', page: 'Trang chủ của guest', link: 'home-page-guest', assign: 'Hiệp Hoàng', status: 'bg-warning' },
-      { id: '5', page: 'Đăng nhập', link: 'login', assign: 'Hiệp', status: 'bg-success' },
-      { id: '6', page: 'Đăng ký', link: 'register', assign: 'Trang', status: 'bg-danger' },
-      { id: '7', page: 'Trang cá nhân', link: 'profile', assign: 'Trang', status: 'bg-danger' },
-      { id: '8', page: 'Trang Quiz', link: 'quiz', assign: 'Hòa Nhật', status: 'bg-warning' },
-      { id: '9', page: 'FlashCard', link: 'flashcard', assign: 'Hòa', status: 'bg-danger' },
-      { id: '10', page: 'Học Write', link: 'learn-write', assign: 'Hòa, Nhật', status: 'bg-danger' },
-      { id: '11', page: 'Test', link: 'test', assign: 'Hiệp, Nhật', status: 'bg-danger' },
-      { id: '12', page: 'Test True/False', link: 'truefalse', assign: 'Hiệp, Nhật', status: 'bg-danger' },
-    ]
+      {
+        id: '1',
+        page: 'Trang thông tin',
+        link: 'home-page',
+        assign: 'Hòa, Hiệp',
+        status: 'bg-success',
+      },
+      {
+        id: '2',
+        page: 'Danh sách quiz của một user',
+        link: 'list-quiz',
+        assign: 'Hiệp Hòa Hoàng',
+        status: 'bg-warning',
+      },
+      {
+        id: '3',
+        page: 'Trang chủ của user',
+        link: 'home-page-user',
+        assign: 'Hiệp Hoàng',
+        status: 'bg-warning',
+      },
+      {
+        id: '4',
+        page: 'Trang chủ của guest',
+        link: 'home-page-guest',
+        assign: 'Hiệp Hoàng',
+        status: 'bg-warning',
+      },
+      {
+        id: '5',
+        page: 'Đăng nhập',
+        link: 'login',
+        assign: 'Hiệp',
+        status: 'bg-success',
+      },
+      {
+        id: '6',
+        page: 'Đăng ký',
+        link: 'register',
+        assign: 'Trang',
+        status: 'bg-danger',
+      },
+      {
+        id: '7',
+        page: 'Trang cá nhân',
+        link: 'profile',
+        assign: 'Trang',
+        status: 'bg-danger',
+      },
+      {
+        id: '8',
+        page: 'Trang Quiz',
+        link: 'quiz',
+        assign: 'Hòa Nhật',
+        status: 'bg-warning',
+      },
+      {
+        id: '9',
+        page: 'FlashCard',
+        link: 'flashcard',
+        assign: 'Hòa',
+        status: 'bg-danger',
+      },
+      {
+        id: '10',
+        page: 'Học Write',
+        link: 'learn-write',
+        assign: 'Hòa, Nhật',
+        status: 'bg-danger',
+      },
+      {
+        id: '11',
+        page: 'Test',
+        link: 'test',
+        assign: 'Hiệp, Nhật',
+        status: 'bg-danger',
+      },
+      {
+        id: '12',
+        page: 'Test True/False',
+        link: 'truefalse',
+        assign: 'Hiệp, Nhật',
+        status: 'bg-danger',
+      },
+    ],
   }
 
   constructor(props: any) {
-    super(props);
+    super(props)
   }
 
   async componentDidMount() {
-    this._userBridge = await BridgeManager.getBridge<UserBridge>(
-      'userBridge'
-    );
+    this._userBridge = await BridgeManager.getBridge<UserBridge>('userBridge')
 
-    this._quizBridge = await BridgeManager.getBridge<QuizBridge>(
-      'quizBridge'
-    );
+    this._quizBridge = await BridgeManager.getBridge<QuizBridge>('quizBridge')
 
     this._setStudyBridge = await BridgeManager.getBridge<SetStudyBridge>(
-      'setStudyBridge'
-    );
+      'setStudyBridge',
+    )
 
     const quiz = await this._quizBridge.getListQuizByID(1)
     console.log({ quiz })
@@ -62,16 +130,16 @@ class ListPage extends Component {
         </tr>
       </thead>
       <tbody>
-          {
-            this.state.data.map((item: any) => 
-            <tr className={`${item.status} text-white`}>
-              <th scope="row">{item.id}</th>
-              <td>{item.page}</td>
-              <td><Link to={`/${item.link}`}>Link</Link></td>
-              <td>{item.assign}</td>
-            </tr>
-            )
-          }
+        {this.state.data.map((item: any) => (
+          <tr className={`${item.status} text-white`}>
+            <th scope="row">{item.id}</th>
+            <td>{item.page}</td>
+            <td>
+              <Link to={`/${item.link}`}>Link</Link>
+            </td>
+            <td>{item.assign}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
   )
@@ -81,7 +149,7 @@ class ListPage extends Component {
       <div className="App">
         <header className="App-header">
           <h1>Quiz Sharp</h1>
-          { this.tableAllPage() }
+          {this.tableAllPage()}
         </header>
       </div>
     )

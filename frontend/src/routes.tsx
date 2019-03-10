@@ -13,7 +13,7 @@ import {
   Register,
   Profile,
   HomePageGuest,
-  HomePageUser
+  HomePageUser,
 } from './page'
 
 export const routes = () => (

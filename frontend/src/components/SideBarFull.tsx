@@ -43,25 +43,37 @@ function SideBar() {
       <div className="box">
         <Link to="#" className="link-nav">
           <div className="box-content">
-            <img className="image-nav" src={require('../images/icon/profile.png')} />
+            <img
+              className="image-nav"
+              src={require('../images/icon/global.png')}
+            />
             <span className="text-nav">My Quiz</span>
           </div>
         </Link>
         <Link to="#" className="link-nav">
           <div className="box-content">
-            <img className="image-nav" src={require('../images/icon/global.png')} />
+            <img
+              className="image-nav"
+              src={require('../images/icon/global.png')}
+            />
             <span className="text-nav">Discover</span>
           </div>
         </Link>
         <Link to="#" className="link-nav">
           <div className="box-content">
-            <img className="image-nav" src={require('../images/icon/setting.png')} />
+            <img
+              className="image-nav"
+              src={require('../images/icon/setting.png')}
+            />
             <span className="text-nav">Settings</span>
           </div>
         </Link>
         <Link to="#" className="link-nav">
           <div className="box-content">
-            <img className="image-nav" src={require('../images/icon/infor.png')} />
+            <img
+              className="image-nav"
+              src={require('../images/icon/infor.png')}
+            />
             <span className="text-nav">Support</span>
           </div>
         </Link>

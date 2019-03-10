@@ -3,11 +3,7 @@ import Route from './routes'
 
 class App extends Component {
   render() {
-    return (
-      <div>
-        { Route() }
-      </div>
-    )
+    return <div>{Route()}</div>
   }
 }
 
