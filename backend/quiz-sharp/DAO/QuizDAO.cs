@@ -14,6 +14,7 @@ namespace quiz_sharp.DAO
         {
             try
             {
+        
                 List<Quiz> listQuiz = new List<Quiz>();
                 String query = "SELECT Quiz.id, Quiz.term, Quiz.definition FROM Set_Study_Quiz INNER JOIN Quiz ON Set_Study_Quiz.quiz_id = Quiz.id WHERE Set_Study_Quiz.set_study_id = @param1";
                 DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { setStudyId });
