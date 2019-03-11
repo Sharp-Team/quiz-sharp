@@ -68,9 +68,5 @@
     "lint-staged": "8.1.5",
     "wait-on": "^3.2.0"
   },
-  "workspaces": [
-    "src/*",
-    "public/*"
-  ],
   "main": "public/electron.ts"
 }
