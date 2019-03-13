@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import * as listQuiz from '../../utils/quiz'
 import {
   IconShare,
   IconEdit,
@@ -12,7 +13,13 @@ import {
   IconTest,
   IconWrite,
   IconCard,
+  IconPlus,
+  Triangle,
+  Star,
+  IconEditGray,
 } from '../../images'
+
+const quizs = listQuiz.cards
 
 const WrapContent = styled.div`
   .wrap-box {
@@ -91,13 +98,47 @@ const WrapFeature = styled.div`
     }
   }
 `
+const WrapTerm = styled.div`
+  .wrap-text {
+    color: #707070;
+    margin-top: 7rem;
+    .text-term {
+      font-weight: bold;
+      padding-left: 20px;
+    }
+    .original {
+      padding-left: 1040px;
+    }
+    .icon-triangle {
+      padding-left: 520px;
+    }
+  }
+`
 
 const WrapListTerm = styled.div`
-  .content {
-    background-color: pink;
-    color: white;
-    text-align: center;
-    margin-top: 20px;
+  .wrap-box {
+    border-radius: 10px;
+    padding: 30px 50px;
+    background-color: aliceblue;
+    color: #707070;
+
+    .wrap-header {
+      display: flex;
+      .quiz {
+        font-size: 0.9rem;
+        border-right: 1px solid gray;
+        border-bottom: 1px solid gray;
+        margin-right: 15px;
+        padding-right: 15px;
+        margin-bottom: 0;
+        line-height: 31px;
+        height: 31px;
+      }
+      .wrap-icon {
+        .my-icon {
+        }
+      }
+    }
   }
 `
 
@@ -163,8 +204,45 @@ function Content() {
         </div>
       </WrapFeature>
 
+      <WrapTerm>
+        <div className="row wrap-text">
+          <div className="col-sm-4">
+            <p className="text-term">7 terms in this set</p>
+          </div>
+          <div className="col-sm-4">
+            <p className="original">Original</p>
+          </div>
+          <div className="col-sm-4">
+            <img className="icon-triangle" src={Triangle} alt="icon" />
+          </div>
+        </div>
+      </WrapTerm>
+
       <WrapListTerm>
-        <p className="content">Nhật</p>
+        <div className="wrap-box">
+          <div className="wrap-header row">
+            {quizs.map(quiz => (
+              <div>
+                <div className="text-term">
+                  <p>{quiz.term}</p>
+                </div>
+                <div className="text-definition">
+                  <p>{quiz.definition}</p>
+                </div>
+                <div className="wrap-icon">
+                  <img src={Star} className="my-icon" />
+                  <Link to="#">
+                    <img
+                      src={IconEditGray}
+                      alt="icon edit"
+                      className="my-icon"
+                    />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </WrapListTerm>
     </div>
   )

@@ -34,6 +34,10 @@ export { default as IconTest } from './icon/test.png'
 
 export { default as IconCard } from './icon/card.png'
 
+export { default as Triangle } from './icon/Triangle.png'
+
+export { default as Star } from './icon/star.png'
+
 export { default as IconMultipleChoice } from './icon/multiplechoice.png'
 
 export { default as Avatar } from './avatar.png'
