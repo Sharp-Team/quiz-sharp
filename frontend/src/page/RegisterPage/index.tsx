@@ -87,7 +87,7 @@ const WrapContent = styled.div`
 
         .input-special {
             width: 50px;
-            border-bottom: 1px solid ##505050;
+            border-bottom: 1px solid #505050;
             border-top: none;
             border-left: none;
             border-right: none;
