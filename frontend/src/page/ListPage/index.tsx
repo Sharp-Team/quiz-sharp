@@ -76,7 +76,7 @@ class ListPage extends Component {
         page: 'FlashCard',
         link: 'flashcard',
         assign: 'Hòa',
-        status: 'bg-danger',
+        status: 'bg-success',
       },
       {
         id: '10',
