@@ -5,10 +5,12 @@ using System.Data;
 
 namespace quiz_sharp.DAO {
   public class SetStudyDAO {
+
+    private const int numberSetInPage = 3;
+
     public List<SetStudy> getListSetStudyByUser(String username, Int64 pageCurrent) {
       try {
         List<SetStudy> listSetStudy = new List<SetStudy>();
-        const int numberSetInPage = 3;
         String query = "WITH Count_Term AS (SELECT COUNT(quiz_id) AS term, set_study_id FROM Set_Study_Quiz GROUP BY set_study_id) " +
           "SELECT id, username, title, ISNULL(term, 0) as term, createdDate FROM (SELECT ROW_NUMBER() OVER(ORDER BY createdDate DESC) " +
           "AS Number, [User].username, Set_Study.id, Set_Study.title, Count_Term.term, Set_Study.createdDate FROM Set_Study INNER JOIN [User] " +
@@ -30,7 +32,6 @@ namespace quiz_sharp.DAO {
     public List<SetStudy> getListSetStudy(Int64 pageCurrent) {
       try {
         List<SetStudy> listSetStudy = new List<SetStudy>();
-        const int numberSetInPage = 3;
         String query = "WITH Count_Term AS (SELECT COUNT(quiz_id) AS term, set_study_id FROM Set_Study_Quiz GROUP BY set_study_id) " +
           "SELECT id, username, title, ISNULL(term, 0) as term, createdDate FROM (SELECT ROW_NUMBER() OVER(ORDER BY createdDate DESC) " +
           "AS Number, [User].username, Set_Study.id, Set_Study.title, Count_Term.term, Set_Study.createdDate FROM Set_Study INNER JOIN [User] " +
@@ -51,7 +52,6 @@ namespace quiz_sharp.DAO {
 
     public int getTotalPageSetStudyByUser(String username) {
       try {
-        const int numberSetInPage = 3;
         String query = "SELECT COUNT(*) AS Total_Quiz FROM Set_Study INNER JOIN [User] ON Set_Study.user_id = [User].id WHERE [User].username = @param";
         int totalQuiz = DataProvider.Instance.ExecuteScalar(query, new object[] { username });
         return (totalQuiz + (totalQuiz % numberSetInPage)) / numberSetInPage;
@@ -62,7 +62,6 @@ namespace quiz_sharp.DAO {
 
     public int getTotalPageSetStudy() {
       try {
-        const int numberSetInPage = 3;
         String query = "SELECT COUNT(*) AS Total_Quiz FROM Set_Study INNER JOIN [User] ON Set_Study.user_id = [User].id";
         int totalQuiz = DataProvider.Instance.ExecuteScalar(query, null);
         return (totalQuiz + (totalQuiz % numberSetInPage)) / numberSetInPage;
