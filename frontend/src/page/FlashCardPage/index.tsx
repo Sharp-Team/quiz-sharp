@@ -19,9 +19,9 @@ class FlashCardPage extends React.Component<any, any> {
     }
   }
 
-  changeQuizCurrent = (quizId: number) => {
+  changeQuizCurrent = (quiz: number) => {
     this.setState ({
-      quizCurrent: quizId
+      quizCurrent: quiz
     })
   }
   
@@ -37,7 +37,8 @@ class FlashCardPage extends React.Component<any, any> {
             <div className="col-10">
               <Content
                 listQuiz={this.state.listQuiz}
-                changeQuizCurrent={this.changeQuizCurrent}/>
+                changeQuizCurrent={this.changeQuizCurrent}
+                quizCurrent={this.state.quizCurrent}/>
             </div>
           </div>
         </div>

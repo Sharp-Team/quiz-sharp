@@ -39,8 +39,8 @@ const WrapContent = styled.div`
     }
 `
 
-const flip = (quizId: string): void => {
-    const quiz = document.getElementById('flip-' + quizId)
+const flip = (indexQuiz: number): void => {
+    const quiz = document.getElementById('flip-' + indexQuiz)
     if (quiz !== null) {
         if(!quiz.classList.contains('flip')) {
             quiz.classList.add('flip')
@@ -50,44 +50,58 @@ const flip = (quizId: string): void => {
     }
 }
 
-const hander = (event: any): void => { 
-    if(event.key === ' ') {
+const hander = (event: any): void => {
+    console.log(event.keyCode                )
+    if(event.keyCode === 32 || event.keyCode === 38 || event.keyCode === 40) {
         const quiz = document.getElementsByClassName('slick-active')[0].children[0].children[0].children[0].id.split('-')[1]
-        flip(quiz)
+        flip(parseInt(quiz))
+    } else if (event.keyCode === 37) {
+        console.log('left')
+    } else if (event.keyCode === 39) {
+        console.log('right')
     }
 }
 
-function Content({ listQuiz, changeQuizCurrent }: any) {
+function Content({ listQuiz, changeQuizCurrent, quizCurrent }: any) {
     var settings = {
         dots: false,
         infinite: false,
         speed: 500,
         slidesToShow: 1,
       }
+
+      window.addEventListener("keyup", hander)
+
       window.addEventListener('load', function () {
-        const quiz = document.getElementsByClassName('slick-active')[0].children[0].children[0].children[0].id.split('-')[1]
-        changeQuizCurrent(quiz)
+        changeQuizCurrent(quizCurrent + 1);
+        quizCurrent += 1;
 
         const slickPrev = document.getElementsByClassName('slick-prev')[0]
-        slickPrev.addEventListener('click', function() {changeQuizCurrent(
-            parseInt(document.getElementsByClassName('slick-active')[0].children[0].children[0].children[0].id.split('-')[1]) - 1
-            ) })
+        slickPrev.addEventListener('click', function() {
+            if(quizCurrent > 0) {
+                changeQuizCurrent(quizCurrent - 1);
+                quizCurrent -= 1;
+            }
+        })
 
         const slickNext = document.getElementsByClassName('slick-next')[0]
-        slickNext.addEventListener('click', function() {changeQuizCurrent(
-            parseInt(document.getElementsByClassName('slick-active')[0].children[0].children[0].children[0].id.split('-')[1]) + 1
-            ) })
+        slickNext.addEventListener('click', function() {
+            if(quizCurrent < listQuiz.length) {
+                changeQuizCurrent(quizCurrent + 1);
+                quizCurrent += 1;
+            }
+        })
       })
 
     return(
-        <div onKeyPress={hander}>
+        <div>
             <Slider {...settings} className="wrap-slick">
-                {listQuiz.map((quiz: any) => (
+                {listQuiz.map((quiz: any, index: number) => (
                     <WrapContent key={quiz.id} className="px-5">
                         <div
                             className="warp-quiz"
-                            onClick={(): void => { flip(quiz.id); changeQuizCurrent(quiz.id) }}
-                            id={`flip-${quiz.id}`}
+                            onClick={(): void => flip(index)}
+                            id={`flip-${index}`}
                         >
                             <span className="text-front">{ quiz.term }</span>
                             <span className="text-back">{ quiz.definition }</span>

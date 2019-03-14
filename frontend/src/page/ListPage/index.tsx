@@ -55,7 +55,7 @@ class ListPage extends Component {
         page: 'Đăng ký',
         link: 'register',
         assign: 'Trang',
-        status: 'bg-danger',
+        status: 'bg-success',
       },
       {
         id: '7',

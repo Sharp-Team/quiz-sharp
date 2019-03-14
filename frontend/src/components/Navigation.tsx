@@ -117,6 +117,8 @@ class Navigaion extends Component {
               <button
                 className="btn btn-signin my-2 my-sm-0 btn-signup"
                 type="submit"
+                data-toggle="modal"
+                data-target="#signupModal"
               >
                 Sign Up
               </button>
