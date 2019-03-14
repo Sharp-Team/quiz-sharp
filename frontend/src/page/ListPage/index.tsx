@@ -62,7 +62,7 @@ class ListPage extends Component {
         page: 'Trang cá nhân',
         link: 'profile',
         assign: 'Trang',
-        status: 'bg-danger',
+        status: 'bg-success',
       },
       {
         id: '8',
