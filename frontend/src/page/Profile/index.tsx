@@ -29,7 +29,7 @@ const WrapContent = styled.div`
           .wrap-label {
             text-align: center;
             color: #505050;
-            font-size: 16px;
+            font-size: 20px;
             height: 34px;
             line-height: 34px;
           }
@@ -110,7 +110,7 @@ function ContentProfile() {
                   </div>
                 </div>
 
-                <div className="row">
+                <div className="row mt-4">
                   <div className="col-9">
                   <img src={fb} className="imgLogo"/>
                   <img src={tt} className="imgLogo"/>
