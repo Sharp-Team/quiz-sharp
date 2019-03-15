@@ -1,10 +1,10 @@
 import React from 'react'
-import { Navigation } from '../components'
+import { UserNavigation } from '../components'
 
 function FullLayout({ sidebar, content }: any) {
   return (
     <div>
-      <Navigation />
+      <UserNavigation />
       <div className="container-fluid">
         <div className="row">
           <div className="col-2">{sidebar}</div>
