@@ -152,17 +152,17 @@ function ContentRegister() {
                   <div className="col-3 wrap-label">Birthday</div>
                   <div className="col-9">
                     <input type="text" className="input-special" />
-                    <img className="showMore" src={IconDown}/>
+                    <img className="showMore" src={IconDown} />
                     <input type="text" className="input-special" />
-                    <img className="showMore" src={IconDown}/>
+                    <img className="showMore" src={IconDown} />
                     <input type="text" className="input-special" />
-                    <img className="showMore" src={IconDown}/>
+                    <img className="showMore" src={IconDown} />
                   </div>
                 </div>
                 <button className="my-btn" id="btnSignUp">Sign up</button>
                 <button
-                className="my-btn login" id="btnLogin">
-                Already have an account? Login</button>
+                  className="my-btn login" id="btnLogin">
+                  Already have an account? Login</button>
               </div>
             </div>
           </div>
