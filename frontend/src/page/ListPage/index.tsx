@@ -44,20 +44,6 @@ class ListPage extends Component {
         status: 'bg-success',
       },
       {
-        id: '5',
-        page: 'Đăng nhập',
-        link: 'login',
-        assign: 'Hiệp',
-        status: 'bg-success',
-      },
-      {
-        id: '6',
-        page: 'Đăng ký',
-        link: 'register',
-        assign: 'Trang',
-        status: 'bg-success',
-      },
-      {
         id: '7',
         page: 'Trang cá nhân',
         link: 'profile',

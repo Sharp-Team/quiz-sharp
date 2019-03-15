@@ -37,3 +37,9 @@ export { default as IconCard } from './icon/card.png'
 export { default as IconMultipleChoice } from './icon/multiplechoice.png'
 
 export { default as Avatar } from './avatar.png'
+
+export { default as IconClose } from './icon/closemodal.png'
+
+export { default as Logo } from './logo.png'
+
+export { default as IconDown } from './icon/down-arrow.png'

@@ -1,7 +1,7 @@
 import React from 'react'
 import { SimpleLayout } from '../../layout'
 import styled from 'styled-components'
-import IconClose from '../../images/icon/closemodal.png'
+import { IconClose } from '../../images'
 import { Link } from 'react-router-dom'
 
 const WrapContent = styled.div`
@@ -123,8 +123,4 @@ function ContentLogin() {
   )
 }
 
-function LoginPage() {
-  return <SimpleLayout content={<ContentLogin />} />
-}
-
-export default LoginPage
+export default ContentLogin
