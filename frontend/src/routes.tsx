@@ -2,7 +2,6 @@ import * as React from 'react'
 import { Route } from 'react-router-dom'
 import {
   Information,
-  ListPage,
   FlashCardPage,
   LearnWritePage,
   ListQuizPage,
@@ -16,8 +15,7 @@ import {
 
 export const routes = () => (
   <div>
-    <Route exact={true} path="/" component={ListPage} />
-    <Route path="/home-page" component={Information} />
+    <Route exact={true} path="/home-page" component={Information} />
     <Route path="/flashcard" component={FlashCardPage} />
     <Route path="/learn-write" component={LearnWritePage} />
     <Route path="/list-quiz" component={ListQuizPage} />

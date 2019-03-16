@@ -1,7 +1,5 @@
 export { default as Information } from './Information'
 
-export { default as ListPage } from './ListPage'
-
 export { default as FlashCardPage } from './FlashCardPage'
 
 export { default as LearnWritePage } from './LearnWritePage'

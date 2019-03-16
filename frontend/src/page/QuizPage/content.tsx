@@ -129,7 +129,7 @@ function Content() {
       <WrapFeature>
         <div className="wrap-feature row justify-content-md-center">
           <div className="one-box col-auto text-center mx-3">
-            <Link to="#" className="link">
+            <Link to="/flashcard" className="link">
               <img
                 className="icon-feature"
                 src={IconCard}
@@ -139,19 +139,19 @@ function Content() {
             </Link>
           </div>
           <div className="one-box col-auto text-center mx-3">
-            <Link to="#" className="link">
+            <Link to="/learn-write" className="link">
               <img className="icon-feature" src={IconWrite} alt="icon write" />
               <p className="title-feature">Write</p>
             </Link>
           </div>
           <div className="one-box col-auto text-center mx-3">
-            <Link to="#" className="link">
+            <Link to="/test" className="link">
               <img className="icon-feature" src={IconTest} alt="icon test" />
               <p className="title-feature">Test</p>
             </Link>
           </div>
           <div className="one-box col-auto text-center mx-3">
-            <Link to="#" className="link">
+            <Link to="/truefalse" className="link">
               <img
                 className="icon-feature"
                 src={IconMultipleChoice}

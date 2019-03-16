@@ -7,7 +7,7 @@ import {
   IconSetting,
   IconInformation,
   IconSettingGray,
-  IconEditGray,
+  IconGlobalGray
 } from '../images'
 
 const WrapContent = styled.div`
@@ -35,49 +35,63 @@ const WrapContent = styled.div`
   }
 `
 
-function SideBar() {
-  return (
-    <WrapContent>
-      <div className="content">
-        <div className="box">
-          <Link to="#">
-            <div className="box-content">
-              <img src={IconProfile} />
+class SideBar extends React.Component<any, any> {
+
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      username: 'thaycacac'
+    }
+  }
+
+  render() {
+    return (
+      <WrapContent>
+        { this.state.username !== null && 
+          <div className="content">
+            <div className="box">
+              <Link to="/list-quiz">
+                <div className="box-content">
+                  <img src={IconProfile} />
+                </div>
+              </Link>
+              <Link to="/home-page-user">
+                <div className="box-content">
+                  <img src={IconGlobal} />
+                </div>
+              </Link>
+              <Link to="#">
+                <div className="box-content">
+                  <img src={IconSetting} />
+                </div>
+              </Link>
+              <Link to="/home-page">
+                <div className="box-content">
+                  <img src={IconInformation} />
+                </div>
+              </Link>
             </div>
-          </Link>
-          <Link to="#">
-            <div className="box-content">
-              <img src={IconGlobal} />
+          </div>
+        }
+        { this.state.username === null && 
+          <div className="content">
+            <div className="box">
+              <Link to="/home-page-guest">
+                <div className="box-content">
+                  <img src={IconGlobalGray} />
+                </div>
+              </Link>
+              <Link to="#">
+                <div className="box-content">
+                  <img src={IconSettingGray} />
+                </div>
+              </Link>
             </div>
-          </Link>
-          <Link to="#">
-            <div className="box-content">
-              <img src={IconSetting} />
-            </div>
-          </Link>
-          <Link to="#">
-            <div className="box-content">
-              <img src={IconInformation} />
-            </div>
-          </Link>
-        </div>
-      </div>
-      <div className="content">
-        <div className="box">
-          <Link to="#">
-            <div className="box-content">
-              <img src={IconEditGray} />
-            </div>
-          </Link>
-          <Link to="#">
-            <div className="box-content">
-              <img src={IconSettingGray} />
-            </div>
-          </Link>
-        </div>
-      </div>
-    </WrapContent>
-  )
+          </div>
+        }
+      </WrapContent>
+    )
+  }
 }
 
 export default SideBar

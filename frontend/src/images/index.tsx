@@ -43,3 +43,5 @@ export { default as IconClose } from './icon/closemodal.png'
 export { default as Logo } from './logo.png'
 
 export { default as IconDown } from './icon/down-arrow.png'
+
+export { default as IconGlobalGray } from './icon/globaldisable.png'

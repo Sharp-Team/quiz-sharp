@@ -1,6 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { 
+  IconGlobal,
+  IconProfile,
+  IconSetting,
+  IconInformation
+} from '../images'
 
 const WrapContent = styled.div`
   .box {
@@ -41,20 +47,20 @@ function SideBar() {
   return (
     <WrapContent>
       <div className="box">
-        <Link to="#" className="link-nav">
+        <Link to="/list-quiz" className="link-nav">
           <div className="box-content">
             <img
               className="image-nav"
-              src={require('../images/icon/global.png')}
+              src={IconGlobal}
             />
             <span className="text-nav">My Quiz</span>
           </div>
         </Link>
-        <Link to="#" className="link-nav">
+        <Link to="/list-quiz" className="link-nav">
           <div className="box-content">
             <img
               className="image-nav"
-              src={require('../images/icon/global.png')}
+              src={IconProfile}
             />
             <span className="text-nav">Discover</span>
           </div>
@@ -63,16 +69,16 @@ function SideBar() {
           <div className="box-content">
             <img
               className="image-nav"
-              src={require('../images/icon/setting.png')}
+              src={IconSetting}
             />
             <span className="text-nav">Settings</span>
           </div>
         </Link>
-        <Link to="#" className="link-nav">
+        <Link to="/home-page" className="link-nav">
           <div className="box-content">
             <img
               className="image-nav"
-              src={require('../images/icon/infor.png')}
+              src={IconInformation}
             />
             <span className="text-nav">Support</span>
           </div>
