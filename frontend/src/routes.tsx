@@ -6,11 +6,9 @@ import {
   FlashCardPage,
   LearnWritePage,
   ListQuizPage,
-  LoginPage,
   QuizPage,
   TestPage,
   TrueFalsePage,
-  Register,
   Profile,
   HomePageGuest,
   HomePageUser,
@@ -23,11 +21,9 @@ export const routes = () => (
     <Route path="/flashcard" component={FlashCardPage} />
     <Route path="/learn-write" component={LearnWritePage} />
     <Route path="/list-quiz" component={ListQuizPage} />
-    <Route path="/login" component={LoginPage} />
     <Route path="/quiz" component={QuizPage} />
     <Route path="/test" component={TestPage} />
     <Route path="/truefalse" component={TrueFalsePage} />
-    <Route path="/register" component={Register} />
     <Route path="/profile" component={Profile} />
     <Route path="/home-page-guest" component={HomePageGuest} />
     <Route path="/home-page-user" component={HomePageUser} />

@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import logo from '../images/logo.png'
+import { Logo }from '../../images'
 import { Link } from 'react-router-dom'
+import Login from './login'
+import Register from './register'
+import UnLogin from './unlogin'
+import Logined from './logined'
 
 const WrapNav = styled.div`
   .bg-light {
@@ -19,7 +23,8 @@ const WrapNav = styled.div`
     }
     .title-logo {
       margin-bottom: 0;
-      margin-left: 10px;
+      margin-left: 20px;
+      line-height: 49px;
     }
   }
 
@@ -55,34 +60,25 @@ const WrapNav = styled.div`
   .navi-active {
     width: 20rem;
   }
-
-  .btn-login {
-    font-weight: bold;
-    background: transparent;
-    color: #f5f5f5;
-    font-size: 20px;
-    padding: 0.1rem 2rem;
-  }
-
-  .btn-signup {
-    font-weight: bold;
-    border-radius: 3.25rem;
-    padding: 0.1rem 2rem;
-    color: #f100a8;
-    background: white;
-    font-size: 20px;
-    margin-left: 0.5rem;
-    box-shadow: 0 5px 17px #0000009e;
-  }
 `
 
-class Navigaion extends Component {
+class Navigaion extends React.Component<any, any> {
+
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      username: "thaycacac" // null
+    }
+  }
+
   render() {
     return (
       <WrapNav>
+        <Login />
+        <Register />
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <Link className="navbar-brand my-title d-flex" to="/">
-            <img src={logo} alt="logo" />
+            <img src={Logo} alt="logo" />
             <p className="title-logo">QuizSharp</p>
           </Link>
           <button
@@ -96,7 +92,9 @@ class Navigaion extends Component {
           >
             <span className="navbar-toggler-icon" />
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div
+            className="collapse navbar-collapse"
+            id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active navi-active">
                 <div className="form-group has-search">
@@ -106,20 +104,14 @@ class Navigaion extends Component {
               </li>
             </ul>
             <div className="form-inline my-2 my-lg-0">
-              <button
-                className="btn btn-login my-2 my-sm-0 btn-login"
-                type="submit"
-                data-toggle="modal"
-                data-target="#loginModal"
-              >
-                Log In
-              </button>
-              <button
-                className="btn btn-signin my-2 my-sm-0 btn-signup"
-                type="submit"
-              >
-                Sign Up
-              </button>
+              {
+                this.state.username === null && 
+                <UnLogin />
+              }
+              {
+                this.state.username !== null && 
+                <Logined username={this.state.username}/>
+              }
             </div>
           </div>
         </nav>
