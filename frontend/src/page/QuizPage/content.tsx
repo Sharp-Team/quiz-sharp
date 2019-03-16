@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import * as listQuiz from '../../utils/quiz'
+import { listQuiz } from '../../utils/quiz'
+import ContentQuiz from './listQuiz'
 import {
   IconShare,
   IconEdit,
@@ -13,13 +14,8 @@ import {
   IconTest,
   IconWrite,
   IconCard,
-  IconPlus,
   Triangle,
-  Star,
-  IconEditGray,
 } from '../../images'
-
-const quizs = listQuiz.cards
 
 const WrapContent = styled.div`
   .wrap-box {
@@ -98,154 +94,126 @@ const WrapFeature = styled.div`
     }
   }
 `
-const WrapTerm = styled.div`
-  .wrap-text {
+const WrapContentTitle = styled.div`
+  .wrap-title {
+    margin-top: 100px;
+    margin-bottom: 20px;
     color: #707070;
-    margin-top: 7rem;
-    .text-term {
+    display: flex;
+    .wrap-countTerm {
       font-weight: bold;
-      padding-left: 20px;
-    }
-    .original {
-      padding-left: 1040px;
-    }
-    .icon-triangle {
-      padding-left: 520px;
-    }
-  }
-`
-
-const WrapListTerm = styled.div`
-  .wrap-box {
-    border-radius: 10px;
-    padding: 30px 50px;
-    background-color: aliceblue;
-    color: #707070;
-
-    .wrap-header {
-      display: flex;
-      .quiz {
-        font-size: 0.9rem;
-        border-right: 1px solid gray;
-        border-bottom: 1px solid gray;
-        margin-right: 15px;
-        padding-right: 15px;
-        margin-bottom: 0;
-        line-height: 31px;
-        height: 31px;
+      .wrap-text {
+        padding-left: 20px;
       }
+    }
+    .wrap-original {
+      position: absolute;
+      right: 2%;
       .wrap-icon {
-        .my-icon {
-        }
+        padding-left: 10px;
       }
     }
   }
 `
 
-function Content() {
-  return (
-    <div>
-      <WrapContent>
-        <div className="wrap-box">
-          <div className="wrap-header">
-            <p className="term">7 terms</p>
-            <img className="avatar" src={Avatar} alt="avatar" />
-            <p className="username">Thaycacac</p>
-          </div>
-          <h3 className="title">Computer and the internet</h3>
-          <div className="list-icon">
-            <img className="image-icon" src={IconFolder} alt="icon folder" />
-            <img className="image-icon" src={IconShare} alt="icon share" />
-            <img className="image-icon" src={IconEdit} alt="icon edit" />
-            <img
-              className="image-icon"
-              src={IconInformation}
-              alt="icon infor"
-            />
-            <img className="image-icon" src={IconMore} alt="icon more" />
-          </div>
-        </div>
-      </WrapContent>
+class Content extends Component<any, any> {
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      data: listQuiz,
+    }
+  }
 
-      <WrapFeature>
-        <div className="wrap-feature row justify-content-md-center">
-          <div className="one-box col-auto text-center mx-3">
-            <Link to="#" className="link">
+  updateQuiz = (data: any) => {
+    this.setState({
+      data,
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <WrapContent>
+          <div className="wrap-box">
+            <div className="wrap-header">
+              <p className="term">7 terms</p>
+              <img className="avatar" src={Avatar} alt="avatar" />
+              <p className="username">Thaycacac</p>
+            </div>
+            <h3 className="title">Computer and the internet</h3>
+            <div className="list-icon">
+              <img className="image-icon" src={IconFolder} alt="icon folder" />
+              <img className="image-icon" src={IconShare} alt="icon share" />
+              <img className="image-icon" src={IconEdit} alt="icon edit" />
               <img
-                className="icon-feature"
-                src={IconCard}
-                alt="icon flash card"
+                className="image-icon"
+                src={IconInformation}
+                alt="icon infor"
               />
-              <p className="title-feature">FlashCard</p>
-            </Link>
+              <img className="image-icon" src={IconMore} alt="icon more" />
+            </div>
           </div>
-          <div className="one-box col-auto text-center mx-3">
-            <Link to="#" className="link">
-              <img className="icon-feature" src={IconWrite} alt="icon write" />
-              <p className="title-feature">Write</p>
-            </Link>
+        </WrapContent>
+        <WrapFeature>
+          <div className="wrap-feature row justify-content-md-center">
+            <div className="one-box col-auto text-center mx-3">
+              <Link to="#" className="link">
+                <img
+                  className="icon-feature"
+                  src={IconCard}
+                  alt="icon flash card"
+                />
+                <p className="title-feature">FlashCard</p>
+              </Link>
+            </div>
+            <div className="one-box col-auto text-center mx-3">
+              <Link to="#" className="link">
+                <img
+                  className="icon-feature"
+                  src={IconWrite}
+                  alt="icon write"
+                />
+                <p className="title-feature">Write</p>
+              </Link>
+            </div>
+            <div className="one-box col-auto text-center mx-3">
+              <Link to="#" className="link">
+                <img className="icon-feature" src={IconTest} alt="icon test" />
+                <p className="title-feature">Test</p>
+              </Link>
+            </div>
+            <div className="one-box col-auto text-center mx-3">
+              <Link to="#" className="link">
+                <img
+                  className="icon-feature"
+                  src={IconMultipleChoice}
+                  alt="icon multiple choice"
+                />
+                <p className="title-feature">Multiple Choice</p>
+              </Link>
+            </div>
           </div>
-          <div className="one-box col-auto text-center mx-3">
-            <Link to="#" className="link">
-              <img className="icon-feature" src={IconTest} alt="icon test" />
-              <p className="title-feature">Test</p>
-            </Link>
-          </div>
-          <div className="one-box col-auto text-center mx-3">
-            <Link to="#" className="link">
-              <img
-                className="icon-feature"
-                src={IconMultipleChoice}
-                alt="icon multiple choice"
-              />
-              <p className="title-feature">Multiple Choice</p>
-            </Link>
-          </div>
-        </div>
-      </WrapFeature>
+        </WrapFeature>
 
-      <WrapTerm>
-        <div className="row wrap-text">
-          <div className="col-sm-4">
-            <p className="text-term">7 terms in this set</p>
+        <WrapContentTitle>
+          <div className="wrap-title">
+            <div className="wrap-countTerm">
+              <span className="wrap-text">7 terms in this set</span>
+            </div>
+            <div className="wrap-original">
+              <span>Original</span>
+              <img className="wrap-icon" src={Triangle} />
+            </div>
           </div>
-          <div className="col-sm-4">
-            <p className="original">Original</p>
-          </div>
-          <div className="col-sm-4">
-            <img className="icon-triangle" src={Triangle} alt="icon" />
-          </div>
-        </div>
-      </WrapTerm>
+        </WrapContentTitle>
 
-      <WrapListTerm>
-        <div className="wrap-box">
-          <div className="wrap-header row">
-            {quizs.map(quiz => (
-              <div>
-                <div className="text-term">
-                  <p>{quiz.term}</p>
-                </div>
-                <div className="text-definition">
-                  <p>{quiz.definition}</p>
-                </div>
-                <div className="wrap-icon">
-                  <img src={Star} className="my-icon" />
-                  <Link to="#">
-                    <img
-                      src={IconEditGray}
-                      alt="icon edit"
-                      className="my-icon"
-                    />
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </WrapListTerm>
-    </div>
-  )
+        <ContentQuiz
+          data={this.state.data}
+          updateQuiz={(data: any) => this.updateQuiz(data)}
+        />
+      </div>
+    )
+  }
 }
 
 export default Content
