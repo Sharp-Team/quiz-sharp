@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace quiz_sharp.DTO
 {
-    class User
+    public class User
     {
         public int id { get; set; }
         public String username { get; set; }

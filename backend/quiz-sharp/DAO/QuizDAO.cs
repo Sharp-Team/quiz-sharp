@@ -5,39 +5,53 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
-namespace quiz_sharp.DAO
-{
-    class QuizDAO
-    {
-        public List<Quiz> getListQuizByID(Int64 setStudyId)
-        {
-            try
-            {
-                List<Quiz> listQuiz = new List<Quiz>();
-                String query = "SELECT Quiz.id, Quiz.term, Quiz.definition FROM Set_Study_Quiz INNER JOIN Quiz ON Set_Study_Quiz.quiz_id = Quiz.id WHERE Set_Study_Quiz.set_study_id = @param1";
-                DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { setStudyId });
-                foreach (DataRow item in data.Rows)
-                {
-                    Quiz quiz = new Quiz(item);
-                    listQuiz.Add(quiz);
-                }
-                return listQuiz;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
 
-        public void editQuiz(Int64 id, String term, String definition)
-        {
-            // Hoàng
-        }
+namespace quiz_sharp.DAO {
+  class QuizDAO {
+    public List<Quiz> getListQuizByID(Int64 setStudyId) {
+      try {
 
-        public void deleteQuiz(Int64 id)
-        {
-            // Trang
+        List<Quiz> listQuiz = new List<Quiz>();
+        String query = "SELECT Quiz.id, Quiz.term, Quiz.definition FROM Set_Study_Quiz INNER JOIN Quiz ON Set_Study_Quiz.quiz_id = Quiz.id WHERE Set_Study_Quiz.set_study_id = @param1";
+        DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { setStudyId });
+        foreach (DataRow item in data.Rows) {
+          Quiz quiz = new Quiz(item);
+          listQuiz.Add(quiz);
         }
+        return listQuiz;
+      } catch (Exception e) {
+        throw e;
+      }
     }
+
+    private String concatString(List<Quiz> listQuiz) {
+      String result = null;
+      int quizSize = listQuiz.Count;
+      for (int i = 0; i < quizSize; i++) {
+        if (quizSize - 1 != 0) {
+          result += String.Join(", ", listQuiz.Select(quiz => quiz.ToString().ToArray()));
+        }
+      }
+      return result;
+    }
+
+    public void updateMultipleQuiz(List<Quiz> listQuiz) {
+      String concate = concatString(listQuiz);
+      String query = "UPDATE temp SET id = src.id, term = src.term, definition = src.definition"
+        + "FROM dbo.Quiz AS temp INNER JOIN( VALUES "
+        + concate
+        + ") AS src (id, term, definition) ON src.id = temp.id";
+      DataProvider.Instance.ExecuteNonQuery(query, null);
+    }
+
+    public void editQuiz(Int64 id, String term, String definition) {
+      // Hoàng
+    }
+
+    public void deleteQuiz(Int64 id) {
+      // Trang
+    }
+  }
 }
