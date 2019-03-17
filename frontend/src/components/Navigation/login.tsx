@@ -1,5 +1,4 @@
 import React from 'react'
-import { SimpleLayout } from '../../layout'
 import styled from 'styled-components'
 import { IconClose } from '../../images'
 import { Link } from 'react-router-dom'
@@ -72,55 +71,84 @@ const WrapContent = styled.div`
   }
 `
 
-function ContentLogin() {
-  return (
-    <WrapContent>
-      <div
-        className="modal fade"
-        id="loginModal"
-        tabIndex={-1}
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h4 className="modal-title">Log in</h4>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <img src={IconClose} alt="close" className="custom-close" />
-              </button>
-            </div>
-            <div className="modal-body">
-              <div className="container wrap-form">
-                <div className="row wrap-input">
-                  <div className="col-3 wrap-label">User name</div>
-                  <div className="col-9">
-                    <input type="text" className="input-custom" />
+class ContentLogin extends React.Component<any, any> {
+
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      username: '',
+      password: ''
+    }
+  }
+
+  changeUser = (event: any) => {
+    const name = event.target.name
+    const value = event.target.value
+    this.setState({
+      [name]: value
+    })
+  }
+
+  render() {
+    return (
+      <WrapContent>
+        <div
+          className="modal fade"
+          id="loginModal"
+          tabIndex={-1}
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h4 className="modal-title">Log in</h4>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <img src={IconClose} alt="close" className="custom-close" />
+                </button>
+              </div>
+              <div className="modal-body">
+                <div className="container wrap-form">
+                  <div className="row wrap-input">
+                    <div className="col-3 wrap-label">User name</div>
+                    <div className="col-9">
+                      <input
+                        type="text"
+                        className="input-custom"
+                        name="username"
+                        onChange={(event) => this.changeUser(event)}
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="row wrap-input">
-                  <div className="col-3 wrap-label">Password</div>
-                  <div className="col-9">
-                    <input type="password" className="input-custom" />
+                  <div className="row wrap-input">
+                    <div className="col-3 wrap-label">Password</div>
+                    <div className="col-9">
+                      <input
+                        type="password"
+                        className="input-custom"
+                        name="password"
+                        onChange={(event) => this.changeUser(event)}
+                      />
+                    </div>
                   </div>
+                  <Link to="#" className="wrap-forgot">
+                    Forgot password?
+                  </Link>
+                  <button className="my-btn">Log in</button>
                 </div>
-                <Link to="#" className="wrap-forgot">
-                  Forgot password?
-                </Link>
-                <button className="my-btn">Log in</button>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </WrapContent>
-  )
+      </WrapContent>
+    )
+  }
 }
 
 export default ContentLogin
