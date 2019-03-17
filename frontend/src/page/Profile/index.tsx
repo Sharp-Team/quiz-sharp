@@ -75,7 +75,7 @@ function ContentProfile() {
               <div className="container wrap-info">
                 <div className="row">
                   <div className="col-9">
-                       <img src={defaultAvatar} id="imgAvatar"/>
+                      <img src={defaultAvatar} id="imgAvatar"/>
                   </div>
                 </div>
                 <div className="row">
