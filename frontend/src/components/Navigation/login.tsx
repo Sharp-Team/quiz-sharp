@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { IconClose } from '../../images'
 import { Link } from 'react-router-dom'
+import { addUser } from '../../actions'
+import { connect } from 'react-redux'
 
 const WrapContent = styled.div`
   .modal-content {
@@ -89,6 +91,12 @@ class ContentLogin extends React.Component<any, any> {
     })
   }
 
+  addUserabcd = () => {
+    this.props.addUser({
+      username: this.state.username
+    })
+  }
+
   render() {
     return (
       <WrapContent>
@@ -140,7 +148,10 @@ class ContentLogin extends React.Component<any, any> {
                   <Link to="#" className="wrap-forgot">
                     Forgot password?
                   </Link>
-                  <button className="my-btn">Log in</button>
+                  <button
+                    className="my-btn"
+                    onClick={() => this.addUserabcd()}
+                  >Log in</button>
                 </div>
               </div>
             </div>
@@ -151,4 +162,4 @@ class ContentLogin extends React.Component<any, any> {
   }
 }
 
-export default ContentLogin
+export default connect(null, {addUser})(ContentLogin)

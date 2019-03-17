@@ -1,12 +1,8 @@
 import * as types from '../constants/ActionTypes'
 
-export const addUser = ({ username, password, avatar_url, email, dob }: any) => ({
+export const addUser = ({username}: any) => ({
   type: types.ADD_USER,
-  username,
-  password,
-  avatar_url,
-  email,
-  dob
+  username: username
 })
 
 export const deleteUser = () => ({

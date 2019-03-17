@@ -9,13 +9,13 @@ import {
   TestPage,
   TrueFalsePage,
   Profile,
-  HomePageGuest,
-  HomePageUser,
+  HomePage
 } from './page'
 
 export const routes = () => (
   <div>
-    <Route exact={true} path="/home-page" component={Information} />
+    <Route exact={true} path="/" component={HomePage} />
+    <Route path="/information" component={Information} />
     <Route path="/flashcard" component={FlashCardPage} />
     <Route path="/learn-write" component={LearnWritePage} />
     <Route path="/list-quiz" component={ListQuizPage} />
@@ -23,8 +23,6 @@ export const routes = () => (
     <Route path="/test" component={TestPage} />
     <Route path="/truefalse" component={TrueFalsePage} />
     <Route path="/profile" component={Profile} />
-    <Route path="/home-page-guest" component={HomePageGuest} />
-    <Route path="/home-page-user" component={HomePageUser} />
   </div>
 )
 

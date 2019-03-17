@@ -6,7 +6,7 @@ import {
   IconProfile,
   IconSetting,
   IconInformation
-} from '../images'
+} from '../../images'
 
 const WrapContent = styled.div`
   .box {

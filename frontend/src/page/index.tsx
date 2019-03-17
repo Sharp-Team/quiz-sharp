@@ -14,6 +14,4 @@ export { default as TrueFalsePage } from './TrueFalsePage'
 
 export { default as Profile } from './Profile'
 
-export { default as HomePageGuest } from './HomePageGuest'
-
-export { default as HomePageUser } from './HomePageUser'
+export { default as HomePage } from './HomePage'

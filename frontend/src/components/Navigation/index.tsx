@@ -1,10 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import styled from 'styled-components'
 import { Logo }from '../../images'
 import { Link } from 'react-router-dom'
-import * as UserActions from '../../actions'
 import Login from './login'
 import Register from './register'
 import UnLogin from './unlogin'
@@ -74,12 +72,12 @@ class Navigaion extends React.Component<any, any> {
   render() {
     return (
       <WrapNav>
-        <Login addUser={this.props.actions.addUser}/>
+        <Login/>
         <Register />
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <Link className="navbar-brand my-title d-flex" to="/">
             <img src={Logo} alt="logo" />
-            <p className="title-logo">QuizSharp {this.props.user}</p>
+            <p className="title-logo">QuizSharp</p>
           </Link>
           <button
             className="navbar-toggler"
@@ -124,10 +122,5 @@ function mapStateToProps(state: any) {
   const user = state.user
   return { user }
 }
-function mapDispatchToProps(dispatch: any) {
-  return {
-    actions: bindActionCreators(UserActions, dispatch)
-  };
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navigaion)
+export default connect(mapStateToProps)(Navigaion)

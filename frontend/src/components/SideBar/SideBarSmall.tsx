@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import {
   IconProfile,
   IconGlobal,
@@ -8,7 +9,7 @@ import {
   IconInformation,
   IconSettingGray,
   IconGlobalGray
-} from '../images'
+} from '../../images'
 
 const WrapContent = styled.div`
   .content {
@@ -39,15 +40,12 @@ class SideBar extends React.Component<any, any> {
 
   constructor(props: any) {
     super(props)
-    this.state = {
-      username: 'thaycacac'
-    }
   }
 
   render() {
     return (
       <WrapContent>
-        { this.state.username !== null && 
+        { this.props.user !== null && 
           <div className="content">
             <div className="box">
               <Link to="/list-quiz">
@@ -55,17 +53,17 @@ class SideBar extends React.Component<any, any> {
                   <img src={IconProfile} />
                 </div>
               </Link>
-              <Link to="/home-page-user">
+              <Link to="/">
                 <div className="box-content">
                   <img src={IconGlobal} />
                 </div>
               </Link>
-              <Link to="#">
+              <Link to="/information">
                 <div className="box-content">
                   <img src={IconSetting} />
                 </div>
               </Link>
-              <Link to="/home-page">
+              <Link to="/information">
                 <div className="box-content">
                   <img src={IconInformation} />
                 </div>
@@ -73,15 +71,15 @@ class SideBar extends React.Component<any, any> {
             </div>
           </div>
         }
-        { this.state.username === null && 
+        { this.props.user === null && 
           <div className="content">
             <div className="box">
-              <Link to="/home-page-guest">
+              <Link to="/">
                 <div className="box-content">
                   <img src={IconGlobalGray} />
                 </div>
               </Link>
-              <Link to="#">
+              <Link to="/information">
                 <div className="box-content">
                   <img src={IconSettingGray} />
                 </div>
@@ -94,4 +92,9 @@ class SideBar extends React.Component<any, any> {
   }
 }
 
-export default SideBar
+function mapStateToProps(state: any) {
+  const user = state.user
+  return { user }
+}
+
+export default connect(mapStateToProps)(SideBar)
