@@ -2,6 +2,5 @@ import { combineReducers } from 'redux'
 import user from './user'
 
 export default combineReducers({
-  // @ts-ignore
   user
-})
+} as any)

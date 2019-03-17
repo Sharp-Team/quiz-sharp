@@ -1,4 +1,6 @@
-const user = (user: object = null || {}, action: any) => {
+const initialState = null
+
+const user = (user = initialState, action: any) => {
   switch(action.type) {
     case 'ADD_USER': {
       return {
