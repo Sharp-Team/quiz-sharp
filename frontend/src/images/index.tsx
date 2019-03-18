@@ -1,3 +1,8 @@
+  
+export { default as Triangle } from './icon/Triangle.png'
+
+export { default as Star } from './icon/star.png'
+
 export { default as IconBookMark } from './icon/bookmark.png'
 
 export { default as IconCreate } from './icon/create.png'
