@@ -16,7 +16,7 @@ const WrapPage = styled.div`
   }
 `
 
-class TrueFalsePage extends Component {
+class TestTrueFalsePage extends Component {
   constructor(props: any) {
     super(props)
   }
@@ -33,4 +33,4 @@ class TrueFalsePage extends Component {
   }
 }
 
-export default TrueFalsePage
+export default TestTrueFalsePage

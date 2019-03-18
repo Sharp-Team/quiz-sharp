@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class TestPage extends Component {
+class TestMultipleChoice extends Component {
   constructor(props: any) {
     super(props)
   }
@@ -16,4 +16,4 @@ class TestPage extends Component {
   }
 }
 
-export default TestPage
+export default TestMultipleChoice

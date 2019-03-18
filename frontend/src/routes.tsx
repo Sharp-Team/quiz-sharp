@@ -1,15 +1,15 @@
 import * as React from 'react'
 import { Route } from 'react-router-dom'
 import {
-  Information,
   FlashCardPage,
+  HomePage,
+  Information,
   LearnWritePage,
   ListQuizPage,
-  QuizPage,
-  TestPage,
-  TrueFalsePage,
   Profile,
-  HomePage
+  QuizPage,
+  TestMultipleChoicePage,
+  TestTrueFalsePage,
 } from './page'
 
 export const routes = () => (
@@ -20,8 +20,8 @@ export const routes = () => (
     <Route path="/learn-write" component={LearnWritePage} />
     <Route path="/list-quiz" component={ListQuizPage} />
     <Route path="/quiz" component={QuizPage} />
-    <Route path="/test" component={TestPage} />
-    <Route path="/truefalse" component={TrueFalsePage} />
+    <Route path="/test/true_false" component={TestTrueFalsePage} />
+    <Route path="/test/multiplechoice" component={TestMultipleChoicePage} />
     <Route path="/profile" component={Profile} />
   </div>
 )
