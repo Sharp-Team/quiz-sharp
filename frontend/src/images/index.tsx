@@ -1,3 +1,8 @@
+  
+export { default as Triangle } from './icon/Triangle.png'
+
+export { default as Star } from './icon/star.png'
+
 export { default as IconBookMark } from './icon/bookmark.png'
 
 export { default as IconCreate } from './icon/create.png'
@@ -34,10 +39,6 @@ export { default as IconTest } from './icon/test.png'
 
 export { default as IconCard } from './icon/card.png'
 
-export { default as Triangle } from './icon/Triangle.png'
-
-export { default as Star } from './icon/star.png'
-
 export { default as IconMultipleChoice } from './icon/multiplechoice.png'
 
 export { default as Avatar } from './avatar.png'
@@ -47,3 +48,5 @@ export { default as IconClose } from './icon/closemodal.png'
 export { default as Logo } from './logo.png'
 
 export { default as IconDown } from './icon/down-arrow.png'
+
+export { default as IconGlobalGray } from './icon/globaldisable.png'

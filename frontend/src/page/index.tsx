@@ -1,7 +1,5 @@
 export { default as Information } from './Information'
 
-export { default as ListPage } from './ListPage'
-
 export { default as FlashCardPage } from './FlashCardPage'
 
 export { default as LearnWritePage } from './LearnWritePage'
@@ -16,6 +14,4 @@ export { default as TrueFalsePage } from './TrueFalsePage'
 
 export { default as Profile } from './Profile'
 
-export { default as HomePageGuest } from './HomePageGuest'
-
-export { default as HomePageUser } from './HomePageUser'
+export { default as HomePage } from './HomePage'

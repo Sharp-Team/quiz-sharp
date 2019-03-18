@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { Logo }from '../../images'
 import { Link } from 'react-router-dom'
@@ -66,15 +67,12 @@ class Navigaion extends React.Component<any, any> {
 
   constructor(props: any) {
     super(props)
-    this.state = {
-      username: "thaycacac" // null
-    }
   }
 
   render() {
     return (
       <WrapNav>
-        <Login />
+        <Login/>
         <Register />
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <Link className="navbar-brand my-title d-flex" to="/">
@@ -105,12 +103,12 @@ class Navigaion extends React.Component<any, any> {
             </ul>
             <div className="form-inline my-2 my-lg-0">
               {
-                this.state.username === null && 
+                this.props.user === null && 
                 <UnLogin />
               }
               {
-                this.state.username !== null && 
-                <Logined username={this.state.username}/>
+                this.props.user !== null && 
+                <Logined username={this.props.user}/>
               }
             </div>
           </div>
@@ -120,4 +118,9 @@ class Navigaion extends React.Component<any, any> {
   }
 }
 
-export default Navigaion
+function mapStateToProps(state: any) {
+  const user = state.user
+  return { user }
+}
+
+export default connect(mapStateToProps)(Navigaion)
