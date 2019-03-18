@@ -91,7 +91,7 @@ class ContentLogin extends React.Component<any, any> {
     })
   }
 
-  addUserabcd = () => {
+  addUser = () => {
     this.props.addUser({
       username: this.state.username
     })
@@ -149,8 +149,10 @@ class ContentLogin extends React.Component<any, any> {
                     Forgot password?
                   </Link>
                   <button
+                    data-dismiss="modal"
+                    aria-label="Close"
                     className="my-btn"
-                    onClick={() => this.addUserabcd()}
+                    onClick={() => this.addUser()}
                   >Log in</button>
                 </div>
               </div>
