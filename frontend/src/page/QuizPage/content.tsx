@@ -179,7 +179,7 @@ class Content extends Component<any, any> {
             <div className="one-box col-auto text-center mx-3">
               <Link to="#" className="link">
                 <img className="icon-feature" src={IconTest} alt="icon test" />
-                <p className="title-feature">Test</p>
+                <p className="title-feature">True/False</p>
               </Link>
             </div>
             <div className="one-box col-auto text-center mx-3">
