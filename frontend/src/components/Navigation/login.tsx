@@ -4,6 +4,8 @@ import { IconClose } from '../../images'
 import { Link } from 'react-router-dom'
 import { addUser } from '../../actions'
 import { connect } from 'react-redux'
+import { UserBridge } from '../../bridges/bridges'
+import BridgeManager from '../../bridges/bridge-manage'
 
 const WrapContent = styled.div`
   .modal-content {
@@ -25,6 +27,11 @@ const WrapContent = styled.div`
       }
     }
     .modal-body {
+      .message {
+        width: 100%;
+        text-align: center;
+        color: red;
+      }
       .wrap-form {
         margin-top: 40px;
         margin-bottom: 40px;
@@ -75,11 +82,15 @@ const WrapContent = styled.div`
 
 class ContentLogin extends React.Component<any, any> {
 
+  // @ts-ignore
+  _userBridge: UserBridge
+
   constructor(props: any) {
     super(props)
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      message: ''
     }
   }
 
@@ -91,9 +102,22 @@ class ContentLogin extends React.Component<any, any> {
     })
   }
 
+  async componentDidMount() {
+    this._userBridge = await BridgeManager.getBridge<UserBridge>('userBridge')
+  }
+
   addUser = () => {
-    this.props.addUser({
-      username: this.state.username
+    const username: any = this._userBridge.signin(this.state.username, this.state.password);
+    username.then((result: string) => {
+      if(result === 'Login successfull') {
+        this.props.addUser({
+          username: this.state.username
+        })
+      } else {
+        this.setState({
+          message: result
+        })
+      }
     })
   }
 
@@ -107,6 +131,7 @@ class ContentLogin extends React.Component<any, any> {
           role="dialog"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
+          data-backdrop="false"
         >
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content">
@@ -122,6 +147,7 @@ class ContentLogin extends React.Component<any, any> {
                 </button>
               </div>
               <div className="modal-body">
+                <p className="message">{this.state.message}</p>
                 <div className="container wrap-form">
                   <div className="row wrap-input">
                     <div className="col-3 wrap-label">User name</div>
@@ -149,8 +175,6 @@ class ContentLogin extends React.Component<any, any> {
                     Forgot password?
                   </Link>
                   <button
-                    data-dismiss="modal"
-                    aria-label="Close"
                     className="my-btn"
                     onClick={() => this.addUser()}
                   >Log in</button>
