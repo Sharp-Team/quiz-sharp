@@ -1,19 +1,18 @@
+// import React from 'react'
+import { SmallLayout } from '../../layout'
+import { SideBarSmall } from '../../components'
 import React, { Component } from 'react'
+import ContentMultipleChoice from './content'
 
-class TestMultipleChoice extends Component {
-  constructor(props: any) {
-    super(props)
-  }
-
+class TestMultipleChoicePage extends Component<any, any> {
   render() {
     return (
-      <div>
-        <header>
-          <h2>Test Page</h2>
-        </header>
-      </div>
+      <SmallLayout
+        sidebar={<SideBarSmall />}
+        content={<ContentMultipleChoice />}
+      />
     )
   }
 }
 
-export default TestMultipleChoice
+export default TestMultipleChoicePage

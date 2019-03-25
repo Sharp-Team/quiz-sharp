@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@types/rc-progress": "^2.2.1",
@@ -35,9 +36,6 @@
     "electron": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "electron-win": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore ."
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": [
     ">0.2%",
