@@ -107,8 +107,8 @@ class ContentLogin extends React.Component<any, any> {
   }
 
   addUser = () => {
-    const username: any = this._userBridge.signin(this.state.username, this.state.password);
-    username.then((result: string) => {
+    const login: any = this._userBridge.signin(this.state.username, this.state.password);
+    login.then((result: string) => {
       if(result === 'Login successfull') {
         this.props.addUser({
           username: this.state.username
