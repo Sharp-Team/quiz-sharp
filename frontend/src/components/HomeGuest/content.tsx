@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { IconBookMark, IconTime } from '../../images'
+import { SetStudyBridge } from '../../bridges/bridges'
+import BridgeManager from '../../bridges/bridge-manage'
 
 const WrapContent = styled.div`
   .wrap-all {
@@ -79,87 +81,73 @@ const WrapContent = styled.div`
   }
 `
 
-const cards = [
-  {
-    id: 1,
-    title: 'Computer and the internet',
-    img: 'flame.jpg',
-    username: 'Flame',
-    bookmark: '50',
-    date: '20/02/2019',
-  },
-  {
-    id: 2,
-    title: 'Computer ',
-    img: 'flame.jpg',
-    username: 'Bacodekiller',
-    bookmark: '30',
-    date: '20/02/2018',
-  },
-  {
-    id: 3,
-    title: 'PRN292',
-    img: 'flame.jpg',
-    username: 'Bacode',
-    bookmark: '40',
-    date: '21/02/2019',
-  },
-  {
-    id: 4,
-    title: 'Computer and the internet',
-    img: 'flame.jpg',
-    username: 'Flame',
-    bookmark: '30',
-    date: '22/02/2019',
-  },
-]
+class ContentQuizPage extends React.Component<any, any> {
 
-function ContentQuizPage() {
-  return (
-    <WrapContent>
-      <div className="wrap-all">
-        <div className="container-fluid">
-          <div className="row">
-            {cards.map(card => (
-              <Link
-                to={`/${card.id}`}
-                className="col-12 content-right"
-                key={card.id}
-              >
-                <div className="my-card">
-                  <div className="title-card">
-                    <h4>{card.title}</h4>
+  // @ts-ignore
+  _setStudyBridge: SetStudyBridge
+
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      cards: []
+    }
+  }
+
+  async componentDidMount() {
+    this._setStudyBridge = await BridgeManager.getBridge<SetStudyBridge>('setStudyBridge')
+    const listQuiz: any = await this._setStudyBridge.getListSetStudy(1)
+    this.setState({
+      cards: listQuiz
+    })
+  }
+
+  render() {
+    return (
+      <WrapContent>
+        <div className="wrap-all">
+          <div className="container-fluid">
+            <div className="row">
+              {this.state.cards.map((card: any) => (
+                <Link
+                  to={`/${card.id}`}
+                  className="col-12 content-right"
+                  key={card.id}
+                >
+                  <div className="my-card">
+                    <div className="title-card">
+                      <h4>{card.title}</h4>
+                    </div>
+                    <div className="info-card">
+                      <div className="wrap-avatar">
+                        <img
+                          src={card.avatar_url}
+                          alt="image card"
+                          className="img-avatar"
+                        />
+                        <span className="username">{card.username}</span>
+                      </div>
+                      <div className="wrap-terms">
+                        <img
+                          src={IconBookMark}
+                          alt="icon bookmark"
+                          className="img-bookmark"
+                        />
+                        <span className="text-count">{card.term}</span>
+                      </div>
+                      <div className="wrap-date">
+                        <img src={IconTime} alt="icon date" className="img-date" />
+                        <span className="text-date">{card.createdDate.split('T')[0]}</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="info-card">
-                    <div className="wrap-avatar">
-                      <img
-                        src={require(`../../images/${card.img}`)}
-                        alt="image card"
-                        className="img-avatar"
-                      />
-                      <span className="username">{card.username}</span>
-                    </div>
-                    <div className="wrap-terms">
-                      <img
-                        src={IconBookMark}
-                        alt="icon bookmark"
-                        className="img-bookmark"
-                      />
-                      <span className="text-count">{card.bookmark}</span>
-                    </div>
-                    <div className="wrap-date">
-                      <img src={IconTime} alt="icon date" className="img-date" />
-                      <span className="text-date">{card.date}</span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </WrapContent>
-  )
+      </WrapContent>
+    )
+  }
 }
 
 export default ContentQuizPage
