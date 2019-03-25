@@ -31,7 +31,7 @@ Image example:
 You go to **Package Manager Control** of Visual Studio and run the following command:
 
 ```bash
-Update-Package
+Install-Package
 ```
 
 It have to waste a little time, please wait !

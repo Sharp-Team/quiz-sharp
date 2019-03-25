@@ -738,10 +738,10 @@
     regenerator-runtime "^0.12.0"
 
 "@babel/runtime@^7.3.1":
-  version "7.3.4"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.3.4.tgz#73d12ba819e365fcf7fd152aed56d6df97d21c83"
+  version "7.4.2"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.2.tgz#f5ab6897320f16decd855eed70b705908a313fe8"
   dependencies:
-    regenerator-runtime "^0.12.0"
+    regenerator-runtime "^0.13.2"
 
 "@babel/template@^7.1.0", "@babel/template@^7.1.2", "@babel/template@^7.2.2":
   version "7.2.2"
@@ -903,6 +903,12 @@
   version "4.7.2"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.2.tgz#0e670ea254d559241b6eeb3894f8754991e73220"
 
+"@types/hoist-non-react-statics@^3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.0.tgz#a59c0c995cc885bef1b8ec2241b114f9b35b517b"
+  dependencies:
+    "@types/react" "*"
+
 "@types/node@*":
   version "11.11.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-11.11.0.tgz#070e9ce7c90e727aca0e0c14e470f9a93ffe9390"
@@ -937,6 +943,14 @@
   dependencies:
     "@types/prop-types" "*"
     "@types/react" "*"
+
+"@types/react-redux@^7.0.5":
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-7.0.5.tgz#4d284f8565cd9f7316086cce50e87f3d201d0880"
+  dependencies:
+    "@types/hoist-non-react-statics" "^3.3.0"
+    "@types/react" "*"
+    redux "^4.0.0"
 
 "@types/react-router-dom@^4.3.1":
   version "4.3.1"
@@ -7909,9 +7923,13 @@ react-error-overlay@^5.1.4:
   version "5.1.4"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.4.tgz#88dfb88857c18ceb3b9f95076f850d7121776991"
 
-react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.2:
+react-is@^16.6.0, react-is@^16.8.1:
   version "16.8.4"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.4.tgz#90f336a68c3a29a096a3d648ab80e87ec61482a2"
+
+react-is@^16.7.0, react-is@^16.8.2:
+  version "16.8.5"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.5.tgz#c54ac229dd66b5afe0de5acbe47647c3da692ff8"
 
 react-redux@^6.0.1:
   version "6.0.1"
@@ -8154,6 +8172,10 @@ regenerator-runtime@^0.11.0:
 regenerator-runtime@^0.12.0:
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz#fa1a71544764c036f8c49b13a08b2594c9f8a0de"
+
+regenerator-runtime@^0.13.2:
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.2.tgz#32e59c9a6fb9b1a4aff09b4930ca2d4477343447"
 
 regenerator-transform@^0.13.4:
   version "0.13.4"

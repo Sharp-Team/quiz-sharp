@@ -54,7 +54,7 @@ namespace quiz_sharp.BUS
             try
             {
                 SetStudyDAO setStudyDao = new SetStudyDAO();
-                setStudyDao.editSetStudy(id, title, updatedDate, listQuiz);
+                //setStudyDao.editSetStudy(id, title, updatedDate, listQuiz);
                 return "Edit successful";
             }
             catch (Exception e)
@@ -68,7 +68,7 @@ namespace quiz_sharp.BUS
             try
             {
                 SetStudyDAO setStudyDao = new SetStudyDAO();
-                setStudyDao.addSetStudy(username, title, createdDate, listQuiz);
+                //setStudyDao.addSetStudy(username, title, createdDate, listQuiz);
                 return "Add successful";
             }
             catch (Exception e)
