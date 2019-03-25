@@ -1,10 +1,10 @@
 import React from 'react'
 import { SimpleLayout } from '../../layout'
 import styled from 'styled-components'
-import defaultAvatar from '../../images/user.png'
-import gg from '../../images/google-plus.png'
-import fb from '../../images/twitter.png'
-import tt from '../../images/facebook.png'
+import { IconGoogle, IconFacebook, IconTwitter } from '../../images'
+import { connect } from 'react-redux'
+import { UserBridge } from '../../bridges/bridges'
+import BridgeManager from '../../bridges/bridge-manage'
 
 const WrapContent = styled.div`
   .modal-content {
@@ -34,21 +34,19 @@ const WrapContent = styled.div`
             line-height: 34px;
           }
           .col-9 {
-             margin: 0px auto;
-             text-align: center;
+            margin: 0px auto;
+            text-align: center;
           }
           #imgAvatar {
-              width: 150px;
-              height: 150px;
+            width: 150px;
+            height: 150px;
+            border-radius: 75px;
           }
 
           #username {
             font-weight: bold;
           }
 
-          #totalStar {
-            color: orange;
-          }
           #totalQuiz {
             color: blue;
           }
@@ -62,73 +60,100 @@ const WrapContent = styled.div`
   }
 `
 
-function ContentProfile() {
-  return (
-    <WrapContent>
-      <div>
-        <div className="modal-dialog modal-dialog-centered" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h4 className="modal-title">User profile</h4>
-            </div>
-            <div className="modal-body">
-              <div className="container wrap-info">
-                <div className="row">
-                  <div className="col-9">
-                      <img src={defaultAvatar} id="imgAvatar"/>
+class ContentProfile extends React.Component<any, any> {
+  // @ts-ignore
+  _userBridge: UserBridge
+
+  constructor(props: any) {
+    super(props)
+
+    this.state = {
+      username: '',
+      avatar: '',
+      dob: '',
+      email: ''
+    }
+  }
+
+  async componentDidMount() {
+    this._userBridge = await BridgeManager.getBridge<UserBridge>('userBridge')
+
+    console.log(this.props.user)
+
+    const user: any = this._userBridge.profile(this.props.user)
+
+    user.then((result: string) => {
+      let { username, avatar_url, dob, email } : any = result
+      this.setState({
+        username: username,
+        avatar: avatar_url,
+        dob: dob.split('T')[0],
+        email: email
+      })
+    })
+  }
+
+  render() {
+    return (
+      <SimpleLayout content= {
+        <WrapContent>
+          <div>
+            <div className="modal-dialog modal-dialog-centered" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h4 className="modal-title">User profile</h4>
+                </div>
+                <div className="modal-body">
+                  <div className="container wrap-info">
+                    <div className="row">
+                      <div className="col-9">
+                          <img src={this.state.avatar} id="imgAvatar"/>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-9 wrap-label">
+                        <span id="username">@{ this.state.username }</span>
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col-9 wrap-label">
+                      <span id="bod">{ this.state.dob }</span>
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col-9 wrap-label">
+                      <span id="email">{ this.state.email }</span>
+                      </div>
+                    </div>
+
+                    <div className="row mt-4">
+                      <div className="col-9">
+                      <img src={IconGoogle} className="imgLogo"/>
+                      <img src={IconFacebook} className="imgLogo"/>
+                      <img src={IconTwitter} className="imgLogo"/>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
-                <div className="row">
-                  <div className="col-9 wrap-label">
-                    <span id="username">@trangnguyen1006</span>
-                  </div>
-                </div>
-
-                <div className="row">
-                  <div className="col-9 wrap-label">
-                  <span id="bod">30/02/1998</span>
-                  </div>
-                </div>
-
-
-                <div className="row">
-                  <div className="col-9 wrap-label">
-                  <label>Votes: <span id="totalStar">1998 votes</span></label>
-                  </div>
-                </div>
-
-
-                <div className="row">
-                  <div className="col-9 wrap-label">
-                  <label>Quizes: <span id="totalQuiz">20 quizes</span></label>
-                  </div>
-                </div>
-
-                <div className="row">
-                  <div className="col-9 wrap-label">
-                  <span id="email">trangnt1006@gmail.com</span>
-                  </div>
-                </div>
-
-                <div className="row mt-4">
-                  <div className="col-9">
-                  <img src={fb} className="imgLogo"/>
-                  <img src={tt} className="imgLogo"/>
-                  <img src={gg} className="imgLogo"/>
-                  </div>
-                </div>
-
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </WrapContent>
-  )
+        </WrapContent>
+      } />
+    )
+  }
 }
 
 function ProfilePage() {
   return <SimpleLayout content={<ContentProfile />} />
 }
 
-export default ProfilePage
+function mapStateToProps(state: any) {
+  const user = state.user
+  return { user }
+}
+
+export default connect(mapStateToProps)(ContentProfile)

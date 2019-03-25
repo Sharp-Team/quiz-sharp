@@ -2,6 +2,7 @@ import { Bridge } from './bridge-manage'
 import User from '../types/User'
 import Quiz from '../types/Quiz'
 import SetStudy from '../types/SetStudy'
+import { Profile } from '../page';
 
 export interface UserBridge extends Bridge {
   getAllUser(): Promise<User[]>
@@ -12,7 +13,8 @@ export interface UserBridge extends Bridge {
     email: string,
     dob: any,
   ): string
-  signin(usernae: string, password: string): string
+  signin(username: string, password: string): string
+  profile(username: string): User
 }
 
 export interface QuizBridge extends Bridge {

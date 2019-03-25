@@ -156,8 +156,9 @@ class ContentRegister extends React.Component<any, any> {
       new Date(this.state.dob)
     )
     register.then((result: string) => {
+      // check register sucessful to notify
       if(result === 'Register successful') {
-        toast.success('Register sucessful !!!', {
+        toast.success('Register sucessful!!!', {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: true,
@@ -173,6 +174,7 @@ class ContentRegister extends React.Component<any, any> {
           dob: '',
           message: ''
         })
+        // else then show message error
       } else {
         this.setState({
           message: result
@@ -184,7 +186,6 @@ class ContentRegister extends React.Component<any, any> {
   render() {
     return (
       <WrapContent>
-        // @ts-ignore
         <ToastContainer
           position="top-right"
           autoClose={5000}
@@ -192,7 +193,6 @@ class ContentRegister extends React.Component<any, any> {
           newestOnTop={false}
           closeOnClick
           rtl={false}
-          pauseOnVisibilityChange
           draggable
           pauseOnHover
         />
