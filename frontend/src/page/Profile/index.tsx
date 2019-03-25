@@ -78,10 +78,7 @@ class ContentProfile extends React.Component<any, any> {
   async componentDidMount() {
     this._userBridge = await BridgeManager.getBridge<UserBridge>('userBridge')
 
-    console.log(this.props.user)
-
     const user: any = this._userBridge.profile(this.props.user)
-
     user.then((result: string) => {
       let { username, avatar_url, dob, email } : any = result
       this.setState({
@@ -145,10 +142,6 @@ class ContentProfile extends React.Component<any, any> {
       } />
     )
   }
-}
-
-function ProfilePage() {
-  return <SimpleLayout content={<ContentProfile />} />
 }
 
 function mapStateToProps(state: any) {

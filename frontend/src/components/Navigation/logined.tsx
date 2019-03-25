@@ -1,6 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { addUser } from '../../actions'
+import { withRouter } from 'react-router-dom'
 
 const WrapLogined = styled.div`
   .wrap-avatar {
@@ -42,38 +45,48 @@ const WrapLogined = styled.div`
   }
 `
 
-function Logined({ username }: any) {
-  return(
-    <WrapLogined>
-      <div className="wrap-avatar">
-        <div className="dropdown">
-          <button
-            className="dropbtn"
-            type="button"
-            data-toggle="dropdown">
-            <img
-              src="https://avatars.servers.getgo.com/2205256774854474505_medium.jpg"
-              className="img-avatar" />
-            <span className="username">
-              {username}
-            <span className="fa fa-caret-down"></span></span>
-          </button>
-          <div
-            className="dropdown-menu"
-            aria-labelledby="dropdownMenuButton">
-            <Link
-              className="dropdown-item"
-              id="dropdown-items"
-              to="/profile">My Profile</Link>
-            <a
-              className="dropdown-item"
-              id="dropdown-items"
-              href="#">Log out</a>
+class Logined extends React.Component<any, any> {
+
+  addUser = () => {
+    this.props.addUser({
+      username: null
+    })
+    this.props.history.push("/");
+  }
+
+  render() {
+    return(
+      <WrapLogined>
+        <div className="wrap-avatar">
+          <div className="dropdown">
+            <button
+              className="dropbtn"
+              type="button"
+              data-toggle="dropdown">
+              <img
+                src="https://avatars.servers.getgo.com/2205256774854474505_medium.jpg"
+                className="img-avatar" />
+              <span className="username">
+                { this.props.username }
+              <span className="fa fa-caret-down"></span></span>
+            </button>
+            <div
+              className="dropdown-menu"
+              aria-labelledby="dropdownMenuButton">
+              <Link
+                className="dropdown-item"
+                id="dropdown-items"
+                to="/profile">My Profile</Link>
+              <a
+                className="dropdown-item"
+                id="dropdown-items"
+                onClick={() => this.addUser()}>Log out</a>
+            </div>
           </div>
         </div>
-      </div>
-    </WrapLogined>
-  )
+      </WrapLogined>
+    )
+  }
 }
 
-export default Logined
+export default  connect(null, {addUser})(withRouter(Logined))
