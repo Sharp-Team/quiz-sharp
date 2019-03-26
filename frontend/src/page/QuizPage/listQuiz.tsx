@@ -1,7 +1,16 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import { IconEditGray, IconDelete } from '../../images'
+import { QuizBridge } from '../../bridges/bridges'
+import BridgeManager from '../../bridges/bridge-manage'
+import { ToastContainer, toast } from 'react-toastify'
+import { connect } from 'react-redux'
+import 'react-toastify/dist/ReactToastify.css'
+import {
+  IconEditGray,
+  IconDelete,
+  IconCancel,
+  IconDone
+} from '../../images'
 
 const WrapQuizs = styled.div`
   .wrap-quiz {
@@ -12,7 +21,7 @@ const WrapQuizs = styled.div`
     display: flex;
     margin-bottom: 25px;
     .wrap-term {
-      border-right: 2px solid #707070;
+      border-right: 1px solid #b7b7b7;
       padding-right: 40px;
       padding-left: 35px;
       padding-bottom: 10px;
@@ -22,17 +31,13 @@ const WrapQuizs = styled.div`
         width: 100%;
         height: 100%;
         display: block;
-        border: none;
         resize: none;
         overflow: hidden;
-      }
-      .form-control {
-        border: none;
       }
     }
     .wrap-definition {
       position: absolute;
-      width: 50%;
+      width: 45%;
       left: 40%;
       .input-definition {
         width: 100%;
@@ -51,6 +56,7 @@ const WrapQuizs = styled.div`
       }
       .icon-edit {
         padding-left: 50px;
+        width: 72px;
       }
       .icon-edit:hover,
       .icon-edit:focus {
@@ -61,6 +67,9 @@ const WrapQuizs = styled.div`
 `
 
 class ContentQuiz extends Component<any, any> {
+  // @ts-ignore
+  _quizBridge: QuizBridge
+
   constructor(props: any) {
     super(props)
     this.state = {
@@ -70,9 +79,16 @@ class ContentQuiz extends Component<any, any> {
     }
   }
 
-  editQuiz = (id: number) => {
+  async  componentDidMount() {
+    this._quizBridge = await BridgeManager.getBridge<QuizBridge>('quizBridge')
+    console.log(this.props.user)
+  }
+
+  editQuiz = (id: number, term: string, definition: string) => {
     this.setState({
       indexQuiz: id,
+      termChange: term,
+      definitionChange: definition
     })
   }
 
@@ -82,32 +98,65 @@ class ContentQuiz extends Component<any, any> {
     })
   }
 
+  updateQuiz = (id: number) => {
+    const result: any = this._quizBridge.editQuiz(this.state.indexQuiz, this.state.termChange, this.state.definitionChange)
+    // exit edit mode
+    this.setState({
+      indexQuiz: -1
+    })
+    // update data props
+    this.props.data[id].term = this.state.termChange
+    this.props.data[id].definition = this.state.definitionChange
+    // notify result
+    toast.success('Edit successful!!!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    })
+  }
+
   changeValue = (event: any) => {
+    const name = event.target.name
+    const value = event.target.value
     this.setState({
-      [event.target.name]: event.target.value,
+      [name]: value
     })
   }
 
-  edit = () => {
-    this.props.data[this.state.indexQuiz] = {
-      term: this.state.termChange,
-      definition: this.state.definitionChange,
-    }
+  deleteQuiz = (idIndex: number, idQuiz: any) => {
+    this.props.data.splice(idIndex, 1)
+    // update props
     this.props.updateQuiz(this.props.data)
-    this.setState({
-      indexQuiz: -1,
-    })
-  }
-
-  deleteQuiz = (id: any) => {
-    this.props.data.splice(id, 1)
-    this.props.updateQuiz(this.props.data)
+    this.props.quiz.term -= 1
+    const result: any = this._quizBridge.deleteQuiz(idQuiz)
+    // notify result
+    toast.success('Delete successful!!!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      })
   }
 
   renderQuiz = (value: any, id: number) => {
-    if (id !== this.state.indexQuiz) {
+    if (value.id !== this.state.indexQuiz) {
       return (
-        <WrapQuizs>
+        <WrapQuizs key={id}>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            draggable
+            pauseOnHover
+          />
           <div className="wrap-all">
             <div className="wrap-quiz">
               <div className="wrap-term">
@@ -118,16 +167,16 @@ class ContentQuiz extends Component<any, any> {
               </div>
               <div className="wrap-listIcon">
                 <img
-                  onClick={() => this.deleteQuiz(id)}
+                  onClick={() => this.deleteQuiz(id, value.id)}
                   className="icon-delete"
                   src={IconDelete}
-                  alt=""
+                  alt="Icon delete"
                 />
                 <img
-                  onClick={() => this.editQuiz(id)}
+                  onClick={() => this.editQuiz(value.id, value.term, value.definition)}
                   className="icon-edit"
                   src={IconEditGray}
-                  alt=""
+                  alt="Icon edit"
                 />
               </div>
             </div>
@@ -136,7 +185,17 @@ class ContentQuiz extends Component<any, any> {
       )
     } else {
       return (
-        <WrapQuizs>
+        <WrapQuizs key={id}>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            draggable
+            pauseOnHover
+          />
           <div className="wrap-all">
             <div className="wrap-quiz">
               <div className="wrap-term">
@@ -144,8 +203,8 @@ class ContentQuiz extends Component<any, any> {
                   type="text"
                   name="termChange"
                   className="form-control"
+                  value={this.state.termChange}
                   onChange={event => this.changeValue(event)}
-                  placeholder={value.term}
                 />
               </div>
               <div className="wrap-definition">
@@ -153,22 +212,22 @@ class ContentQuiz extends Component<any, any> {
                   type="text"
                   name="definitionChange"
                   className="form-control"
+                  value={this.state.definitionChange}
                   onChange={event => this.changeValue(event)}
-                  placeholder={value.definition}
                 />
               </div>
               <div className="wrap-listIcon">
                 <img
-                  onClick={() => this.deleteQuiz(id)}
+                  onClick={() => this.updateQuiz(id)}
                   className="icon-edit"
-                  src={IconDelete}
-                  alt=""
+                  src={IconDone}
+                  alt="Icon done"
                 />
                 <img
-                  onClick={() => this.editQuiz(id)}
+                  onClick={() => this.cancleEdit()}
                   className="icon-edit"
-                  src={IconEditGray}
-                  alt=""
+                  src={IconCancel}
+                  alt="Icon edit"
                 />
               </div>
             </div>
@@ -178,15 +237,16 @@ class ContentQuiz extends Component<any, any> {
     }
   }
 
-  showListQuiz = () => {
+  render() {
     return this.props.data.map((value: any, id: number) =>
       this.renderQuiz(value, id),
     )
   }
-
-  render() {
-    return this.showListQuiz()
-  }
 }
 
-export default ContentQuiz
+function mapStateToProps(state: any) {
+  const user = state.user
+  return { user }
+}
+
+export default connect(mapStateToProps)(ContentQuiz)

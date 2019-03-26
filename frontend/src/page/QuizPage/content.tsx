@@ -10,12 +10,11 @@ import {
   IconInformation,
   IconFolder,
   IconMore,
-  Avatar,
   IconMultipleChoice,
   IconTest,
   IconWrite,
   IconCard,
-  Triangle,
+  Triangle
 } from '../../images'
 
 const WrapContent = styled.div`
@@ -132,7 +131,7 @@ class Content extends Component<any, any> {
 
   async  componentDidMount() {
     this._quizBridge = await BridgeManager.getBridge<QuizBridge>('quizBridge')
-    const quiz = await this._quizBridge.getListQuizByID(parseInt(this.props.quiz.id));
+    const quiz = await this._quizBridge.getListQuizByID(parseInt(this.props.quiz.id))
     this.updateListQuiz(quiz)
   }
 
@@ -210,7 +209,7 @@ class Content extends Component<any, any> {
         <WrapContentTitle>
           <div className="wrap-title">
             <div className="wrap-countTerm">
-              <span className="wrap-text">7 terms in this set</span>
+              <span className="wrap-text">{this.props.quiz.term} terms in this set</span>
             </div>
             <div className="wrap-original">
               <span>Original</span>
@@ -220,6 +219,7 @@ class Content extends Component<any, any> {
         </WrapContentTitle>
 
         <ContentQuiz
+          quiz={this.props.quiz}
           data={this.state.data}
           updateQuiz={(data: any) => this.updateListQuiz(data)}
         />
