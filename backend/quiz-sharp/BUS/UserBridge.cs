@@ -2,6 +2,7 @@
 using quiz_sharp.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -24,27 +25,52 @@ namespace quiz_sharp.Bridges
         {
             try
             {
-                // check username valid
-                if (!Regex.IsMatch(username, "([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*"))
+                // check username empty
+                if (string.IsNullOrEmpty(username))
                 {
-                    return "Username invalid";
+                    return "Username required!!!";
                 }
 
-                // check password
-                if (!Regex.IsMatch(password, "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"))
+                // check username valid
+                else if (!Regex.IsMatch(username, "([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*"))
                 {
-                    return "Password must be ninimum eight characters, at least one letter and one number";
+                    return "Username invalid!!!";
                 }
 
                 // check email valid
-                if (!Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?""^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase))
+                else if (!Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?""^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase))
                 {
-                    return "Email invalid";
+                    return "Email invalid!!!";
                 }
 
-                UserDAO userDao = new UserDAO();
-                userDao.addUser(username, password, avatart_url, email, dob);
-                return "Register successful";
+                // check password
+                else if (!Regex.IsMatch(password, "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"))
+                {
+                    return "Password must be ninimum eight characters, at least one letter and one number!!!";
+                }
+
+                // check avatar empty
+                else if (string.IsNullOrEmpty(avatart_url))
+                {
+                    return "Avatar Url required!!!";
+                }
+                // check dob null
+                else if (dob.GetHashCode() == 0)
+                {
+                    return "Date of birth required!!!";
+                }
+
+                // create new account
+                else
+                {
+                    UserDAO userDao = new UserDAO();
+                    userDao.addUser(username, password, avatart_url, email, dob);
+                    return "Register successful";
+                }
+            }
+            catch(SqlException e)
+            {
+                return "Error duplicate!!!";
             }
             catch (Exception e)
             {
@@ -74,5 +100,20 @@ namespace quiz_sharp.Bridges
                 return e.ToString();
             }
         }
+        public User Profile (String username)
+        {
+            try
+            {
+                UserDAO userDao = new UserDAO();
+                User user = userDao.getUserByUsername(username);
+                return user;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
     }
 }
