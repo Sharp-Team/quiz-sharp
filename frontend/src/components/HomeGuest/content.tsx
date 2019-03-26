@@ -97,7 +97,7 @@ class ContentQuizPage extends React.Component<any, any> {
   async componentDidMount() {
     this._setStudyBridge = await BridgeManager.getBridge<SetStudyBridge>('setStudyBridge')
     // get list quiz in page current
-    const listQuiz: any = await this._setStudyBridge.getListSetStudy(this.props.page)
+    const listQuiz: any = await this._setStudyBridge.getListSetStudy(parseInt(this.props.page))
     // get total page to paging
     const totalPage = await this._setStudyBridge.getTotalPageSetStudy();
     // update state
@@ -140,7 +140,15 @@ class ContentQuizPage extends React.Component<any, any> {
             <div className="row">
               {this.state.cards.map((card: any) => (
                 <Link
-                  to={`/${card.id}`}
+                  to={{
+                    pathname: "/quiz", 
+                    search: "?id=" +
+                      card.id + "&title=" +
+                      card.title + "&username=" +
+                      card.username + "&avatar=" +
+                      card.avatar_url + "&term=" +
+                      card.term
+                  }}
                   className="col-12 content-right"
                   key={card.id}
                 >

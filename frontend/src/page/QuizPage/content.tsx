@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { listQuiz } from '../../utils/quiz'
 import ContentQuiz from './listQuiz'
+import { QuizBridge } from '../../bridges/bridges'
+import BridgeManager from '../../bridges/bridge-manage'
 import {
   IconShare,
   IconEdit,
@@ -39,6 +40,7 @@ const WrapContent = styled.div`
       .avatar {
         width: 30px;
         height: 30px;
+        border-radius: 15px;
       }
       .username {
         line-height: 31px;
@@ -117,14 +119,24 @@ const WrapContentTitle = styled.div`
 `
 
 class Content extends Component<any, any> {
+
+   // @ts-ignore
+   _quizBridge: QuizBridge
+
   constructor(props: any) {
     super(props)
     this.state = {
-      data: listQuiz,
+      data: [],
     }
   }
 
-  updateQuiz = (data: any) => {
+  async  componentDidMount() {
+    this._quizBridge = await BridgeManager.getBridge<QuizBridge>('quizBridge')
+    const quiz = await this._quizBridge.getListQuizByID(parseInt(this.props.quiz.id));
+    this.updateListQuiz(quiz)
+  }
+
+  updateListQuiz = (data: any) => {
     this.setState({
       data,
     })
@@ -136,11 +148,11 @@ class Content extends Component<any, any> {
         <WrapContent>
           <div className="wrap-box">
             <div className="wrap-header">
-              <p className="term">7 terms</p>
-              <img className="avatar" src={Avatar} alt="avatar" />
-              <p className="username">Thaycacac</p>
+              <p className="term">{this.props.quiz.term} terms</p>
+              <img className="avatar" src={this.props.quiz.avatar} alt="avatar" />
+              <p className="username">{this.props.quiz.username}</p>
             </div>
-            <h3 className="title">Computer and the internet</h3>
+            <h3 className="title">{this.props.quiz.title}</h3>
             <div className="list-icon">
               <img className="image-icon" src={IconFolder} alt="icon folder" />
               <img className="image-icon" src={IconShare} alt="icon share" />
@@ -209,7 +221,7 @@ class Content extends Component<any, any> {
 
         <ContentQuiz
           data={this.state.data}
-          updateQuiz={(data: any) => this.updateQuiz(data)}
+          updateQuiz={(data: any) => this.updateListQuiz(data)}
         />
       </div>
     )
