@@ -8,7 +8,7 @@ namespace quiz_sharp.DAO
     public class SetStudyDAO
     {
 
-        private const int numberSetInPage = 3;
+        private const int numberSetInPage = 5;
 
         public List<SetStudy> getListSetStudyByUser(String username, Int64 pageCurrent)
         {
