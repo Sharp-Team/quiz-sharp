@@ -75,7 +75,9 @@ class Navigaion extends React.Component<any, any> {
         <Login/>
         <Register />
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <Link className="navbar-brand my-title d-flex" to="/">
+          <Link
+            className="navbar-brand my-title d-flex"
+            to={{ pathname: "/", search: "?page=1" }} >
             <img src={Logo} alt="logo" />
             <p className="title-logo">QuizSharp</p>
           </Link>

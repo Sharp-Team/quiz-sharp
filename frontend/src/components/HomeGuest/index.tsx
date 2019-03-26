@@ -3,8 +3,8 @@ import { SmallLayout } from '../../layout'
 import { SideBarSmall } from '..'
 import Content from './content'
 
-function HomePageGuest() {
-  return <SmallLayout sidebar={<SideBarSmall />} content={<Content />} />
+function HomePageGuest({ page }: any) {
+  return <SmallLayout sidebar={<SideBarSmall />} content={<Content page={page} />} />
 }
 
 export default HomePageGuest

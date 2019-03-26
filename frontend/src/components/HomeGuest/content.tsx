@@ -89,16 +89,45 @@ class ContentQuizPage extends React.Component<any, any> {
   constructor(props: any) {
     super(props)
     this.state = {
-      cards: []
+      cards: [],
+      totalPage: 0
     }
   }
 
   async componentDidMount() {
     this._setStudyBridge = await BridgeManager.getBridge<SetStudyBridge>('setStudyBridge')
-    const listQuiz: any = await this._setStudyBridge.getListSetStudy(1)
+    // get list quiz in page current
+    const listQuiz: any = await this._setStudyBridge.getListSetStudy(this.props.page)
+    // get total page to paging
+    const totalPage = await this._setStudyBridge.getTotalPageSetStudy();
+    // update state
     this.setState({
-      cards: listQuiz
+      cards: listQuiz,
+      totalPage: totalPage
     })
+  }
+
+  async componentDidUpdate(){
+    this._setStudyBridge = await BridgeManager.getBridge<SetStudyBridge>('setStudyBridge')
+    const listQuiz: any = await this._setStudyBridge.getListSetStudy(parseInt(this.props.page))
+    this.setState({
+      cards: listQuiz,
+    })
+  }
+
+  paging = () => {
+    let paging = []
+    for(let i = 1; i <= this.state.totalPage; i++) {
+      paging.push(
+        <li className="page-item" key={i}>
+          <Link
+            className="page-link"
+            to={{ pathname: "/", search: "?page=" + i }}>{i}
+          </Link>
+        </li>
+      )
+    }
+    return paging
   }
 
   render() {
@@ -144,6 +173,11 @@ class ContentQuizPage extends React.Component<any, any> {
               ))}
             </div>
           </div>
+          <nav aria-label="Page navigation" className="paging ">
+            <ul className="pagination justify-content-center">
+              {this.paging()}
+            </ul>
+          </nav>
         </div>
       </WrapContent>
     )

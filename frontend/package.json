@@ -17,6 +17,7 @@
     "history": "^4.7.2",
     "jquery": "^3.3.1",
     "prettier": "^1.16.4",
+    "query-string": "^6.4.0",
     "rc-progress": "^2.3.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
