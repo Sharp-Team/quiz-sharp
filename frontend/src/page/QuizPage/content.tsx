@@ -168,7 +168,9 @@ class Content extends Component<any, any> {
         <WrapFeature>
           <div className="wrap-feature row justify-content-md-center">
             <div className="one-box col-auto text-center mx-3">
-              <Link to="#" className="link">
+              <Link
+                to={{ pathname: "/flashcard", search: "?id=" + this.props.quiz.id }}
+                className="link">
                 <img
                   className="icon-feature"
                   src={IconCard}

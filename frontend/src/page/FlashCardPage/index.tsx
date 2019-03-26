@@ -3,6 +3,9 @@ import { Navigation } from '../../components'
 import { Circle } from 'rc-progress'
 import styled from 'styled-components'
 import Slider from 'react-slick'
+import queryString from 'query-string'
+import { QuizBridge } from '../../bridges/bridges'
+import BridgeManager from '../../bridges/bridge-manage'
 import './styles.css'
 
 const WrapperSideBar = styled.div`
@@ -63,6 +66,9 @@ const WrapContent = styled.div`
 
 class FlashCardPage extends React.Component<any, any> {
 
+  // @ts-ignore
+  _quizBridge: QuizBridge
+
   constructor(props: any) {
     super(props)
     this.state = {
@@ -78,6 +84,7 @@ class FlashCardPage extends React.Component<any, any> {
     }
   }
 
+  // flip term and definition
   flip = (indexQuiz: number): void => {
     const quiz = document.getElementById('flip-' + indexQuiz)
     if (quiz !== null) {
@@ -89,6 +96,7 @@ class FlashCardPage extends React.Component<any, any> {
     }
   }
 
+  // user press arrow right or left then next or pre slide
   presskey = (event: any) => {
     if(event.keyCode === 32 || event.keyCode === 38 || event.keyCode === 40) {
       event.preventDefault()
@@ -109,11 +117,22 @@ class FlashCardPage extends React.Component<any, any> {
     }
   }
 
+  // not use check auto
   checkAutoPlay = () => {
     return this.state.autoplay
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    this._quizBridge = await BridgeManager.getBridge<QuizBridge>('quizBridge')
+    const idQuiz: any = queryString.parse(this.props.location.search).id
+    const listQuiz = this._quizBridge.getListQuizByID(parseInt(idQuiz))
+    listQuiz.then((result: any) => {
+      this.setState({
+        listQuiz: result
+      })
+    })
+
+    // user click button prev then pre slide
     const slickPrev = document.getElementsByClassName('slick-prev')[0]
     slickPrev.addEventListener('click', () => {
       if(this.state.quizCurrent > 1) {
@@ -123,7 +142,8 @@ class FlashCardPage extends React.Component<any, any> {
       }
     })
 
-  const slickNext = document.getElementsByClassName('slick-next')[0]
+    // user click button next then next slide
+    const slickNext = document.getElementsByClassName('slick-next')[0]
     slickNext.addEventListener('click', () => {
       if(this.state.quizCurrent < this.state.listQuiz.length) {
         this.setState({
@@ -154,7 +174,7 @@ class FlashCardPage extends React.Component<any, any> {
                   strokeColor="#f100a8"
                   className="circle-progress"
                 />
-                <p className="progress">{percent}%</p>
+                <p className="progress">{percent.toFixed(1)}%</p>
               </WrapperSideBar>
             </div>
             <div className="col-10">
