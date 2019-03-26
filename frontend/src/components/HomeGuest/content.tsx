@@ -110,8 +110,10 @@ class ContentQuizPage extends React.Component<any, any> {
   async componentDidUpdate(){
     this._setStudyBridge = await BridgeManager.getBridge<SetStudyBridge>('setStudyBridge')
     const listQuiz: any = await this._setStudyBridge.getListSetStudy(parseInt(this.props.page))
+    const totalPage = await this._setStudyBridge.getTotalPageSetStudy();
     this.setState({
       cards: listQuiz,
+      totalPage: totalPage
     })
   }
 

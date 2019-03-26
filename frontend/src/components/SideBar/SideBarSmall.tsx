@@ -53,7 +53,7 @@ class SideBar extends React.Component<any, any> {
                   <img src={IconProfile} />
                 </div>
               </Link>
-              <Link to="/">
+              <Link to={{ pathname: "/", search: "?page=1" }}>
                 <div className="box-content">
                   <img src={IconGlobal} />
                 </div>
@@ -74,7 +74,7 @@ class SideBar extends React.Component<any, any> {
         { this.props.user === null && 
           <div className="content">
             <div className="box">
-              <Link to="/">
+              <Link to={{ pathname: "/", search: "?page=1" }}>
                 <div className="box-content">
                   <img src={IconGlobalGray} />
                 </div>

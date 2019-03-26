@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { IconBookMark as bookmark, IconTime as date } from '../../images'
+import { IconBookMark, IconTime } from '../../images'
+import { SetStudyBridge } from '../../bridges/bridges'
+import BridgeManager from '../../bridges/bridge-manage'
 
 const WrapContent = styled.div`
   .wrap-all {
     margin-top: 3rem;
-    height: 100vh;
+    overflow: auto;
     .content-right {
       background-color: #ffffff;
       margin-bottom: 1.5rem;
@@ -79,87 +81,110 @@ const WrapContent = styled.div`
   }
 `
 
-const cards = [
-  {
-    id: 1,
-    title: 'Computer and the internet',
-    img: 'flame.jpg',
-    username: 'Flame',
-    bookmark: '50',
-    date: '20/02/2019',
-  },
-  {
-    id: 2,
-    title: 'Computer ',
-    img: 'flame.jpg',
-    username: 'Bacodekiller',
-    bookmark: '30',
-    date: '20/02/2018',
-  },
-  {
-    id: 3,
-    title: 'PRN292',
-    img: 'flame.jpg',
-    username: 'Bacode',
-    bookmark: '40',
-    date: '21/02/2019',
-  },
-  {
-    id: 4,
-    title: 'Computer and the internet',
-    img: 'flame.jpg',
-    username: 'Flame',
-    bookmark: '30',
-    date: '22/02/2019',
-  },
-]
+class ContentQuizPage extends React.Component<any, any> {
 
-function ContentQuizPage() {
-  return (
-    <WrapContent>
-      <div className="wrap-all">
-        <div className="container-fluid">
-          <div className="row">
-            {cards.map(card => (
-              <Link
-                to={`/${card.id}`}
-                className="col-12 content-right"
-                key={card.id}
-              >
-                <div className="my-card">
-                  <div className="title-card">
-                    <h4>{card.title}</h4>
+  // @ts-ignore
+  _setStudyBridge: SetStudyBridge
+
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      cards: [],
+      totalPage: 0
+    }
+  }
+
+  async componentDidMount() {
+    this._setStudyBridge = await BridgeManager.getBridge<SetStudyBridge>('setStudyBridge')
+    // get list quiz in page current
+    const listQuiz: any = await this._setStudyBridge.getListSetStudy(this.props.page)
+    // get total page to paging
+    const totalPage = await this._setStudyBridge.getTotalPageSetStudy();
+    // update state
+    console.log(totalPage)
+    this.setState({
+      cards: listQuiz,
+      totalPage: totalPage
+    })
+  }
+
+  async componentDidUpdate(){
+    this._setStudyBridge = await BridgeManager.getBridge<SetStudyBridge>('setStudyBridge')
+    const listQuiz: any = await this._setStudyBridge.getListSetStudy(parseInt(this.props.page))
+    const totalPage = await this._setStudyBridge.getTotalPageSetStudy();
+    this.setState({
+      cards: listQuiz,
+      totalPage: totalPage
+    })
+  }
+
+  paging = () => {
+    let paging = []
+    for(let i = 1; i <= this.state.totalPage; i++) {
+      paging.push(
+        <li className="page-item" key={i}>
+          <Link
+            className="page-link"
+            to={{ pathname: "/", search: "?page=" + i }}>{i}
+          </Link>
+        </li>
+      )
+    }
+    return paging
+  }
+
+  render() {
+    return (
+      <WrapContent>
+        <div className="wrap-all">
+          <div className="container-fluid">
+            <div className="row">
+              {this.state.cards.map((card: any) => (
+                <Link
+                  to={`/${card.id}`}
+                  className="col-12 content-right"
+                  key={card.id}
+                >
+                  <div className="my-card">
+                    <div className="title-card">
+                      <h4>{card.title}</h4>
+                    </div>
+                    <div className="info-card">
+                      <div className="wrap-avatar">
+                        <img
+                          src={card.avatar_url}
+                          alt="image card"
+                          className="img-avatar"
+                        />
+                        <span className="username">{card.username}</span>
+                      </div>
+                      <div className="wrap-terms">
+                        <img
+                          src={IconBookMark}
+                          alt="icon bookmark"
+                          className="img-bookmark"
+                        />
+                        <span className="text-count">{card.term}</span>
+                      </div>
+                      <div className="wrap-date">
+                        <img src={IconTime} alt="icon date" className="img-date" />
+                        <span className="text-date">{card.createdDate.split('T')[0]}</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="info-card">
-                    <div className="wrap-avatar">
-                      <img
-                        src={require(`../../images/${card.img}`)}
-                        alt="image card"
-                        className="img-avatar"
-                      />
-                      <span className="username">{card.username}</span>
-                    </div>
-                    <div className="wrap-terms">
-                      <img
-                        src={bookmark}
-                        alt="icon bookmark"
-                        className="img-bookmark"
-                      />
-                      <span className="text-count">{card.bookmark}</span>
-                    </div>
-                    <div className="wrap-date">
-                      <img src={date} alt="icon date" className="img-date" />
-                      <span className="text-date">{card.date}</span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
           </div>
+          <nav aria-label="Page navigation" className="paging ">
+            <ul className="pagination justify-content-center">
+              {this.paging()}
+            </ul>
+          </nav>
         </div>
-      </div>
-    </WrapContent>
-  )
+      </WrapContent>
+    )
+  }
 }
 
 export default ContentQuizPage
