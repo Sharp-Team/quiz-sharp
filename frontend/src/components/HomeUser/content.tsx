@@ -141,7 +141,15 @@ class ContentQuizPage extends React.Component<any, any> {
             <div className="row">
               {this.state.cards.map((card: any) => (
                 <Link
-                  to={`/${card.id}`}
+                to={{
+                    pathname: "/quiz", 
+                    search: "?id=" +
+                      card.id + "&title=" +
+                      card.title + "&username=" +
+                      card.username + "&avatar=" +
+                      card.avatar_url + "&term=" +
+                      card.term
+                  }}
                   className="col-12 content-right"
                   key={card.id}
                 >

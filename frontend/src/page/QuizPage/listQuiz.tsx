@@ -81,7 +81,6 @@ class ContentQuiz extends Component<any, any> {
 
   async  componentDidMount() {
     this._quizBridge = await BridgeManager.getBridge<QuizBridge>('quizBridge')
-    console.log(this.props.user)
   }
 
   editQuiz = (id: number, term: string, definition: string) => {
@@ -165,20 +164,24 @@ class ContentQuiz extends Component<any, any> {
               <div className="wrap-definition">
                 <span>{value.definition}</span>
               </div>
-              <div className="wrap-listIcon">
-                <img
-                  onClick={() => this.deleteQuiz(id, value.id)}
-                  className="icon-delete"
-                  src={IconDelete}
-                  alt="Icon delete"
-                />
-                <img
-                  onClick={() => this.editQuiz(value.id, value.term, value.definition)}
-                  className="icon-edit"
-                  src={IconEditGray}
-                  alt="Icon edit"
-                />
-              </div>
+              {
+                this.props.user === this.props.quiz.username &&
+                  <div className="wrap-listIcon">
+                  <img
+                    onClick={() => this.deleteQuiz(id, value.id)}
+                    className="icon-delete"
+                    src={IconDelete}
+                    alt="Icon delete"
+                  />
+                  <img
+                    onClick={() => this.editQuiz(value.id, value.term, value.definition)}
+                    className="icon-edit"
+                    src={IconEditGray}
+                    alt="Icon edit"
+                  />
+                </div>
+              }
+              
             </div>
           </div>
         </WrapQuizs>

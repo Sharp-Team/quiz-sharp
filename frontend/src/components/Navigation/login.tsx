@@ -131,7 +131,6 @@ class ContentLogin extends React.Component<any, any> {
           role="dialog"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
-          data-backdrop="false"
         >
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content">
@@ -175,6 +174,8 @@ class ContentLogin extends React.Component<any, any> {
                     Forgot password?
                   </Link>
                   <button
+                    data-dismiss="modal"
+                    aria-label="Close"
                     className="my-btn"
                     onClick={() => this.addUser()}
                   >Log in</button>
