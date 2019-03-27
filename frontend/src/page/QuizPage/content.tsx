@@ -23,7 +23,7 @@ const WrapContent = styled.div`
     border-radius: 5px;
     padding: 30px 50px;
     margin: 20px 0;
-
+    margin-top: 3rem;
     .wrap-header {
       display: flex;
       .term {
@@ -192,7 +192,9 @@ class Content extends Component<any, any> {
               </Link>
             </div>
             <div className="one-box col-auto text-center mx-3">
-              <Link to="#" className="link">
+              <Link
+                to={{ pathname: "/truefalse", search: "?id=" + this.props.quiz.id }}
+                className="link">
                 <img className="icon-feature" src={IconTest} alt="icon test" />
                 <p className="title-feature">Test</p>
               </Link>

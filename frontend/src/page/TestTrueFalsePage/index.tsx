@@ -1,36 +1,29 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
+import React from 'react'
+import { SmallLayout } from '../../layout'
+import { SideBarSmall } from '../../components'
+import Content from './content'
+import queryString from 'query-string'
 
-const WrapPage = styled.div`
-  .big-title {
-    background-color: red;
-    color: white;
-  }
-  .wrap-content {
-    .small-title {
-      color: red;
-    }
-    .small-title-2 {
-      color: #20c997;
-    }
-  }
-`
-
-class TestTrueFalsePage extends Component {
+class ListQuizPage extends React.Component<any, any> {
   constructor(props: any) {
     super(props)
+    this.state = {
+      idQuiz: 0
+    }
   }
+
+  componentDidMount() {
+    const idQuiz = queryString.parse(this.props.location.search).id
+    this.setState({
+      idQuiz: idQuiz
+    })
+  }
+
   render() {
-    return (
-      <WrapPage>
-        <h2 className="big-title">Home Page</h2>
-        <div className="wrap-content">
-          <p className="small-title">title 1</p>
-          <p className="small-title-2">title 2</p>
-        </div>
-      </WrapPage>
-    )
+    return <SmallLayout
+      sidebar={<SideBarSmall />}
+      content={<Content idQuiz={this.state.idQuiz}/>} />
   }
 }
 
-export default TestTrueFalsePage
+export default ListQuizPage
