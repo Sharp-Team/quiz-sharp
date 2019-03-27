@@ -8,7 +8,7 @@ const WrapTitle = styled.div`
     margin-left: 1rem;
     margin-top: 3rem;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
-    background-color: #bbdefb;
+    background-color: #e1f5fe;
     width: 89%;
     .wrap-text-count {
       font-weight: bold;
@@ -29,7 +29,22 @@ const WrapTitle = styled.div`
   ol li::before {
     content: counter(my-awesome-counter) '. ';
     color: red;
+    font-size: 0.85rem;
     font-weight: bold;
+  }
+  
+  .btn-check-answer {
+    margin-bottom: 40px;
+    max-width: 90%;
+    display: flex;
+    justify-content: center;
+    .answer {
+          margin-top: 20px;
+          padding-left: 10%;
+          padding-right: 10%;
+          font-size: 2rem;
+          font-weight: bold;
+    }
   }
 `
 
@@ -52,6 +67,9 @@ class ContentMultipleChoice extends Component<any, any> {
           <ol className="question-list">
             <SuffleQuizs data={this.state.data} />
           </ol>
+        </div>
+        <div className="btn-check-answer">
+          <button className="btn btn-success answer">Check answer</button>
         </div>
       </WrapTitle>
     )
