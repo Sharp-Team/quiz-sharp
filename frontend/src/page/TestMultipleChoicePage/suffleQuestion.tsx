@@ -30,10 +30,17 @@ const WrapList = styled.div`
 class SuffleQuizs extends Component<any, any> {
   constructor(props: any) {
     super(props)
-    this.state = {}
+    this.state = {
+      answerQuiz: ''
+    }
   }
 
-  displayQuestion = (value: any, id: number) => {
+  checkAnswer = (id: number, answer: any) => {
+    const listAnswerCorrect = this.props.answerChildCorrect
+    
+  }
+
+  displayQuestion = (value: any, id: number, index: number) => {
     return (
       <WrapList>
         <li className="wrap-all-li">
@@ -44,7 +51,9 @@ class SuffleQuizs extends Component<any, any> {
               <input
                 type="radio"
                 className="form-check-input btn-check"
-                name="optradio"
+                name={(index).toString()}
+                
+                //onChange={this.listAnswer}
               />
               <span className="item-definition">{value.suffleDefinition[0][0].toString()}</span>
             </div>
@@ -52,7 +61,8 @@ class SuffleQuizs extends Component<any, any> {
               <input
                 type="radio"
                 className="form-check-input btn-check"
-                name="optradio"
+                name={(index).toString()}
+                //onChange={this.listAnswer}
               />
               <span className="item-definition">
                 {value.suffleDefinition[0][1].toString()}
@@ -62,7 +72,8 @@ class SuffleQuizs extends Component<any, any> {
               <input
                 type="radio"
                 className="form-check-input btn-check"
-                name="optradio"
+                name={(index).toString()}
+                //onChange={this.listAnswer}
               />
               <span className="item-definition">
                 {value.suffleDefinition[0][2].toString()}
@@ -72,7 +83,8 @@ class SuffleQuizs extends Component<any, any> {
               <input
                 type="radio"
                 className="form-check-input btn-check"
-                name="optradio"
+                name={(index).toString()}
+                //onChange={this.listAnswer}
               />
               <span className="item-definition">
                 {value.suffleDefinition[0][3].toString()}
@@ -83,13 +95,12 @@ class SuffleQuizs extends Component<any, any> {
       </WrapList>
     )
   }
-
   _suffle = (data: any[], tempResult: any[], answer: any) => {
     shuffle.pick(data, { 'picks': data.length }).filter(e => e.definition === answer )
     .map(e => {
     tempResult.push(e.definition)
     })
-    shuffle.pick(data, { 'picks': 8 }).filter(e => e.definition !== answer )
+    shuffle.pick(data, { 'picks': data.length }).filter(e => e.definition !== answer )
     .splice(1, 3)
     .map(e => {
       tempResult.push(e.definition)
@@ -99,6 +110,7 @@ class SuffleQuizs extends Component<any, any> {
     })
   }
   shuffleAnwser = (data: any[], dataQuiz: any[]) => {
+    let answer: any = null
     for (let item of data) {
       let element = Object.create(null)
       element = {
@@ -108,21 +120,23 @@ class SuffleQuizs extends Component<any, any> {
       } 
       element.id = item.id
       element.term = item.term
-      const answer = item.definition
+      answer = item.definition
       let tempResult: any = [] 
       let shuffleResult = this._suffle(data, tempResult, answer)
       element.suffleDefinition.push(shuffleResult)
       dataQuiz.push(element)
     }
-    console.log(dataQuiz)
+    // console.log(dataQuiz)
+    
   }
 
   render() {
     const data: any[] = this.props.data
     const dataQuiz: any[] = []
     this.shuffleAnwser(data, dataQuiz)
+    let i = 1
     return dataQuiz.map((value: any, id: number) =>
-      this.displayQuestion(value, id),
+      this.displayQuestion(value, id, i++),
     )
   }
 }
