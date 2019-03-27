@@ -56,7 +56,7 @@ function SideBar() {
             <span className="text-nav">My Quiz</span>
           </div>
         </Link>
-        <Link to="/list-quiz" className="link-nav">
+        <Link to="/" className="link-nav">
           <div className="box-content">
             <img
               className="image-nav"

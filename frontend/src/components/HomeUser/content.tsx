@@ -14,6 +14,10 @@ const WrapContent = styled.div`
       margin-bottom: 1.5rem;
       box-shadow: 0 2px 15px grey;
       border-radius: 5px;
+      margin-top: 6px;
+      margin-left: 10px;
+      margin-right: 10px;
+      width: 100%;
       &:hover {
         text-decoration: none;
       }
@@ -150,7 +154,7 @@ class ContentQuizPage extends React.Component<any, any> {
                       card.avatar_url + "&term=" +
                       card.term
                   }}
-                  className="col-12 content-right"
+                  className="content-right"
                   key={card.id}
                 >
                   <div className="my-card">
