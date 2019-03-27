@@ -86,7 +86,7 @@ class ContentMultipleChoice extends Component<any, any> {
       <WrapTitle>
         <div className="wrap-all">
           <p className="wrap-text-count " id="top-section">
-            {this.state.data.length} Multiple choice questions
+            {this.state.data.length} Multiple Choice Questions
           </p>
           <ol className="question-list">
             <SuffleQuizs data={this.state.data} answerChildCorrect={this.listAnswerCorrect()}/>
