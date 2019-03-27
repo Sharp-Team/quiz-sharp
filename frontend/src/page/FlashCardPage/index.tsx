@@ -74,13 +74,7 @@ class FlashCardPage extends React.Component<any, any> {
     this.state = {
       quizCurrent: 1,
       restart: false,
-      listQuiz: [
-        { id: 1, term: "hello", definition: "xin chao"  },
-        { id: 2, term: "goodby", definition: "tam biet" },
-        { id: 3, term: "sorry", definition: "xin loi" },
-        { id: 4, term: "sad", definition: "buon" },
-        { id: 4, term: "cute", definition: "de thuong" }
-      ]
+      listQuiz: []
     }
   }
 

@@ -11,7 +11,7 @@ const WrapPage = styled.div`
       color: red;
     }
     .small-title-2 {
-      color: green;
+      color: #20c997;
     }
   }
 `

@@ -180,7 +180,9 @@ class Content extends Component<any, any> {
               </Link>
             </div>
             <div className="one-box col-auto text-center mx-3">
-              <Link to="#" className="link">
+              <Link
+                to={{ pathname: "/learn-write", search: "?id=" + this.props.quiz.id }}
+                className="link">
                 <img
                   className="icon-feature"
                   src={IconWrite}
