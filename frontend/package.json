@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@types/jquery": "^3.3.29",
@@ -42,9 +43,6 @@
     "electron-win": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore ."
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "browserslist": [
     ">0.2%",
     "not dead",
@@ -69,6 +67,7 @@
     }
   },
   "devDependencies": {
+    "@types/shuffle-array": "^0.0.28",
     "@typescript-eslint/eslint-plugin": "^1.4.2",
     "concurrently": "^4.1.0",
     "electron-builder": "^20.38.5",

@@ -21,7 +21,7 @@ export const routes = () => (
     <Route path="/list-quiz" component={ListQuizPage} />
     <Route path="/quiz" component={QuizPage} />
     <Route path="/truefalse" component={TestTrueFalsePage} />
-    <Route path="/test/multiplechoice" component={TestMultipleChoicePage} />
+    <Route path="/multiplechoice" component={TestMultipleChoicePage} />
     <Route path="/profile" component={Profile} />
   </div>
 )
