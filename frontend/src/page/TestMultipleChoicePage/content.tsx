@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { listQuiz } from '../../utils/quiz'
 import SuffleQuizs from './suffleQuestion'
+import { QuizBridge } from '../../bridges/bridges'
+import BridgeManager from '../../bridges/bridge-manage'
 
 const WrapTitle = styled.div`
   .wrap-all {
     margin-left: 1rem;
     margin-top: 3rem;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
-    background-color: #e1f5fe;
+    box-shadow: 0 2px 15px grey;
+    padding: 3rem;
+    border-radius: 10px;
     width: 89%;
     .wrap-text-count {
       font-weight: bold;
@@ -17,6 +19,9 @@ const WrapTitle = styled.div`
     }
     .question-list {
       padding-left: 2px;
+      .wrap-term {
+        font-weight: bold;
+      }
     }
   }
   ol {
@@ -28,7 +33,6 @@ const WrapTitle = styled.div`
   }
   ol li::before {
     content: counter(my-awesome-counter) '. ';
-    color: red;
     font-size: 0.85rem;
     font-weight: bold;
   }
@@ -49,28 +53,40 @@ const WrapTitle = styled.div`
 `
 
 class ContentMultipleChoice extends Component<any, any> {
+
+  // @ts-ignore
+  _quizBridge: QuizBridge
+
   constructor(props: any) {
     super(props)
     this.state = {
-      data: listQuiz,
-      quizSize: listQuiz.length,
+      data: [],
       answerQuiz: []
     }
   }
+
+  async  componentDidMount() {
+    this._quizBridge = await BridgeManager.getBridge<QuizBridge>('quizBridge')
+    const listQuiz = await this._quizBridge.getListQuizByID(parseInt(this.props.idQuiz))
+    this.setState({
+      data: listQuiz
+    })
+  }
+
   listAnswerCorrect = () => {
-    return listQuiz.reduce((acc: any[], { id, definition }) => [ ...acc, {id, definition} ], [])
+    return this.state.data.reduce((acc: any[], { id, definition }: any) => [ ...acc, {id, definition} ], [])
   }
 
   checkAnswer = (event: any) => {
-    
     $('html, body').animate({scrollTop:0}, '300')
   }
+
   render() {
     return (
       <WrapTitle>
         <div className="wrap-all">
           <p className="wrap-text-count " id="top-section">
-            {this.state.quizSize} Multiple choice questions
+            {this.state.data.length} Multiple choice questions
           </p>
           <ol className="question-list">
             <SuffleQuizs data={this.state.data} answerChildCorrect={this.listAnswerCorrect()}/>

@@ -20,8 +20,8 @@ namespace quiz_sharp.DTO
         {
             id = Int32.Parse(dr["id"].ToString());
             username = dr["username"].ToString();
-            password = dr["password"].ToString();
             avatar_url = dr["avatar_url"].ToString();
+            password = dr["password"].ToString();
             email = dr["email"].ToString();
             dob = Convert.ToDateTime(dr["dob"]);
         }

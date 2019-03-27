@@ -11,6 +11,7 @@ namespace quiz_sharp.DTO
     {
         public int id { get; set; }
         public String username { get; set; }
+        public String avatar_url { get; set; }
         public String title { get; set; }
         public int term { get; set; }
         public DateTime createdDate { get; set; }
@@ -19,6 +20,7 @@ namespace quiz_sharp.DTO
         {
             id = Int32.Parse(dr["id"].ToString());
             username = dr["username"].ToString();
+            avatar_url = dr["avatar_url"].ToString();
             title = dr["title"].ToString();
             term = Int32.Parse(dr["term"].ToString());
             createdDate = Convert.ToDateTime(dr["createdDate"]);

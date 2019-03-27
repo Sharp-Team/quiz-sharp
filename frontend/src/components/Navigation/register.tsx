@@ -1,7 +1,10 @@
 import React from 'react'
-import { SimpleLayout } from '../../layout'
 import styled from 'styled-components'
-import { IconClose, IconDown } from '../../images'
+import { IconClose } from '../../images'
+import { UserBridge } from '../../bridges/bridges'
+import BridgeManager from '../../bridges/bridge-manage'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const WrapContent = styled.div`
   .modal-content {
@@ -26,6 +29,20 @@ const WrapContent = styled.div`
       .wrap-form {
         margin-top: 40px;
         margin-bottom: 40px;
+        .wrap-image-avatar {
+          width: 100%;
+          text-align: center;
+          margin-top: 0;
+          .image-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 75px;
+          }
+        }
+        .message {
+          width: 100%;
+          color: red;
+        }
         .wrap-input {
           margin-top: 20px;
           .wrap-label {
@@ -102,73 +119,193 @@ const WrapContent = styled.div`
   }
 `
 
-function ContentRegister() {
-  return (
-    <WrapContent>
-      <div
-        className="modal fade"
-        id="signupModal"
-        tabIndex={-1}
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div className="modal-dialog modal-dialog-centered" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h4 className="modal-title">Sign up</h4>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close">
-                <img src={IconClose} alt="close" className="custom-close" />
-              </button>
-            </div>
-            <div className="modal-body">
-              <div className="container wrap-form">
-                <div className="row wrap-input">
-                  <div className="col-3 wrap-label">User name</div>
-                  <div className="col-9">
-                    <input type="text" className="input-custom" />
-                  </div>
-                </div>
+class ContentRegister extends React.Component<any, any> {
+  // @ts-ignore
+  _userBridge: UserBridge
 
-                <div className="row wrap-input">
-                  <div className="col-3 wrap-label">Email</div>
-                  <div className="col-9">
-                    <input type="text" className="input-custom" />
-                  </div>
-                </div>
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      username: '',
+      password: '',
+      avatar: '',
+      email: '',
+      dob : '',
+      message: ''
+    }
+  }
 
-                <div className="row wrap-input">
-                  <div className="col-3 wrap-label">Password</div>
-                  <div className="col-9">
-                    <input type="password" className="input-custom" />
-                  </div>
-                </div>
+  async componentDidMount() {
+    this._userBridge = await BridgeManager.getBridge<UserBridge>('userBridge')
+  }
 
-                <div className="row wrap-input">
-                  <div className="col-3 wrap-label">Birthday</div>
-                  <div className="col-9">
-                    <input type="text" className="input-special" />
-                    <img className="showMore" src={IconDown} />
-                    <input type="text" className="input-special" />
-                    <img className="showMore" src={IconDown} />
-                    <input type="text" className="input-special" />
-                    <img className="showMore" src={IconDown} />
-                  </div>
-                </div>
-                <button className="my-btn" id="btnSignUp">Sign up</button>
+  changeUser = (event: any) => {
+    const name = event.target.name
+    const value = event.target.value
+    this.setState({
+      [name]: value
+    })
+  }
+
+  register = () => {
+    const register: any = this._userBridge.register(
+      this.state.username,
+      this.state.password,
+      this.state.avatar,
+      this.state.email,
+      new Date(this.state.dob)
+    )
+    register.then((result: string) => {
+      // check register sucessful to notify
+      if(result === 'Register successful') {
+        toast.success('Register sucessful!!!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          })
+        this.setState({
+          username: '',
+          password: '',
+          avatar: '',
+          email: '',
+          dob: '',
+          message: ''
+        })
+        // else then show message error
+      } else {
+        this.setState({
+          message: result
+        })
+      }
+    })
+  }
+
+  render() {
+    return (
+      <WrapContent>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          draggable
+          pauseOnHover
+        />
+        <div
+          className="modal fade"
+          id="signupModal"
+          tabIndex={-1}
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h4 className="modal-title">Sign up</h4>
                 <button
-                  className="my-btn login" id="btnLogin">
-                  Already have an account? Login</button>
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close">
+                  <img src={IconClose} alt="close" className="custom-close" />
+                </button>
+              </div>
+              <div className="modal-body">
+                <div className="container wrap-form">
+                  <p className="message">{ this.state.message }</p>
+                  {
+                    this.state.avatar !== '' &&
+                    <div className="wrap-image-avatar">
+                      <img 
+                        className="image-avatar"
+                        src={this.state.avatar} />
+                    </div>
+                  }
+                  <div className="row wrap-input">
+                    <div className="col-3 wrap-label">User name</div>
+                    <div className="col-9">
+                      <input
+                        type="text"
+                        className="input-custom"
+                        name="username"
+                        onChange={ (event) => this.changeUser(event) }
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row wrap-input">
+                    <div className="col-3 wrap-label">Email</div>
+                    <div className="col-9">
+                      <input
+                        type="text"
+                        className="input-custom"
+                        name="email"
+                        onChange={ (event) => this.changeUser(event) }
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row wrap-input">
+                    <div className="col-3 wrap-label">Password</div>
+                    <div className="col-9">
+                      <input
+                        type="password"
+                        className="input-custom"
+                        name="password"
+                        onChange={ (event) => this.changeUser(event) }
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row wrap-input">
+                    <div className="col-3 wrap-label">Avatar Url</div>
+                    <div className="col-9">
+                      <input
+                        type="text"
+                        className="input-custom"
+                        name="avatar"
+                        onChange={ (event) => this.changeUser(event) }
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row wrap-input">
+                    <div className="col-3 wrap-label">Birthday</div>
+                    <div className="col-9">
+                      <input
+                        type="date"
+                        name="dob"
+                        className="input-custom"
+                        onChange={ (event) => this.changeUser(event) }
+                      />
+                    </div>
+                  </div>
+                  <button
+                    className="my-btn"
+                    id="btnSignUp"
+                    onClick={ () => this.register() }>Sign up</button>
+                  <button
+                    className="my-btn login"
+                    id="btnLogin"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    data-toggle="modal"
+                    data-target="#loginModal">
+                    Already have an account? Login
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </WrapContent>
-  )
+      </WrapContent>
+    )
+  }
 }
 
 export default ContentRegister

@@ -50,3 +50,13 @@ export { default as Logo } from './logo.png'
 export { default as IconDown } from './icon/down-arrow.png'
 
 export { default as IconGlobalGray } from './icon/globaldisable.png'
+
+export { default as IconGoogle } from './icon/google-plus.png'
+
+export { default as IconFacebook } from './icon/facebook.png'
+
+export { default as IconTwitter } from './icon/twitter.png'
+
+export { default as IconDone } from './icon/done.png'
+
+export { default as IconCancel } from './icon/cancel.png'

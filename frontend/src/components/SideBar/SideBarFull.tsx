@@ -51,21 +51,21 @@ function SideBar() {
           <div className="box-content">
             <img
               className="image-nav"
-              src={IconGlobal}
+              src={IconProfile}
             />
             <span className="text-nav">My Quiz</span>
           </div>
         </Link>
-        <Link to="/list-quiz" className="link-nav">
+        <Link to="/" className="link-nav">
           <div className="box-content">
             <img
               className="image-nav"
-              src={IconProfile}
+              src={IconGlobal}
             />
             <span className="text-nav">Discover</span>
           </div>
         </Link>
-        <Link to="#" className="link-nav">
+        <Link to="/information" className="link-nav">
           <div className="box-content">
             <img
               className="image-nav"
@@ -74,7 +74,7 @@ function SideBar() {
             <span className="text-nav">Settings</span>
           </div>
         </Link>
-        <Link to="/home-page" className="link-nav">
+        <Link to="/information" className="link-nav">
           <div className="box-content">
             <img
               className="image-nav"

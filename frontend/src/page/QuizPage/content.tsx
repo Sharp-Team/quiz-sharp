@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { listQuiz } from '../../utils/quiz'
 import ContentQuiz from './listQuiz'
+import { QuizBridge } from '../../bridges/bridges'
+import BridgeManager from '../../bridges/bridge-manage'
 import {
   IconShare,
   IconEdit,
   IconInformation,
   IconFolder,
   IconMore,
-  Avatar,
   IconMultipleChoice,
   IconTest,
   IconWrite,
   IconCard,
-  Triangle,
+  Triangle
 } from '../../images'
 
 const WrapContent = styled.div`
@@ -23,7 +23,7 @@ const WrapContent = styled.div`
     border-radius: 5px;
     padding: 30px 50px;
     margin: 20px 0;
-
+    margin-top: 3rem;
     .wrap-header {
       display: flex;
       .term {
@@ -39,6 +39,7 @@ const WrapContent = styled.div`
       .avatar {
         width: 30px;
         height: 30px;
+        border-radius: 15px;
       }
       .username {
         line-height: 31px;
@@ -117,14 +118,24 @@ const WrapContentTitle = styled.div`
 `
 
 class Content extends Component<any, any> {
+
+   // @ts-ignore
+   _quizBridge: QuizBridge
+
   constructor(props: any) {
     super(props)
     this.state = {
-      data: listQuiz,
+      data: [],
     }
   }
 
-  updateQuiz = (data: any) => {
+  async  componentDidMount() {
+    this._quizBridge = await BridgeManager.getBridge<QuizBridge>('quizBridge')
+    const quiz = await this._quizBridge.getListQuizByID(parseInt(this.props.quiz.id))
+    this.updateListQuiz(quiz)
+  }
+
+  updateListQuiz = (data: any) => {
     this.setState({
       data,
     })
@@ -136,11 +147,11 @@ class Content extends Component<any, any> {
         <WrapContent>
           <div className="wrap-box">
             <div className="wrap-header">
-              <p className="term">7 terms</p>
-              <img className="avatar" src={Avatar} alt="avatar" />
-              <p className="username">Thaycacac</p>
+              <p className="term">{this.props.quiz.term} terms</p>
+              <img className="avatar" src={this.props.quiz.avatar} alt="avatar" />
+              <p className="username">{this.props.quiz.username}</p>
             </div>
-            <h3 className="title">Computer and the internet</h3>
+            <h3 className="title">{this.props.quiz.title}</h3>
             <div className="list-icon">
               <img className="image-icon" src={IconFolder} alt="icon folder" />
               <img className="image-icon" src={IconShare} alt="icon share" />
@@ -157,7 +168,9 @@ class Content extends Component<any, any> {
         <WrapFeature>
           <div className="wrap-feature row justify-content-md-center">
             <div className="one-box col-auto text-center mx-3">
-              <Link to="#" className="link">
+              <Link
+                to={{ pathname: "/flashcard", search: "?id=" + this.props.quiz.id }}
+                className="link">
                 <img
                   className="icon-feature"
                   src={IconCard}
@@ -167,7 +180,9 @@ class Content extends Component<any, any> {
               </Link>
             </div>
             <div className="one-box col-auto text-center mx-3">
-              <Link to="#" className="link">
+              <Link
+                to={{ pathname: "/learn-write", search: "?id=" + this.props.quiz.id }}
+                className="link">
                 <img
                   className="icon-feature"
                   src={IconWrite}
@@ -177,13 +192,17 @@ class Content extends Component<any, any> {
               </Link>
             </div>
             <div className="one-box col-auto text-center mx-3">
-              <Link to="#" className="link">
+              <Link
+                to={{ pathname: "/truefalse", search: "?id=" + this.props.quiz.id }}
+                className="link">
                 <img className="icon-feature" src={IconTest} alt="icon test" />
                 <p className="title-feature">Test</p>
               </Link>
             </div>
             <div className="one-box col-auto text-center mx-3">
-              <Link to="#" className="link">
+              <Link 
+                to={{ pathname: "/multiplechoice", search: "?id=" + this.props.quiz.id }}
+                className="link">
                 <img
                   className="icon-feature"
                   src={IconMultipleChoice}
@@ -198,7 +217,7 @@ class Content extends Component<any, any> {
         <WrapContentTitle>
           <div className="wrap-title">
             <div className="wrap-countTerm">
-              <span className="wrap-text">7 terms in this set</span>
+              <span className="wrap-text">{this.props.quiz.term} terms in this set</span>
             </div>
             <div className="wrap-original">
               <span>Original</span>
@@ -208,8 +227,9 @@ class Content extends Component<any, any> {
         </WrapContentTitle>
 
         <ContentQuiz
+          quiz={this.props.quiz}
           data={this.state.data}
-          updateQuiz={(data: any) => this.updateQuiz(data)}
+          updateQuiz={(data: any) => this.updateListQuiz(data)}
         />
       </div>
     )

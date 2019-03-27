@@ -20,8 +20,8 @@ export const routes = () => (
     <Route path="/learn-write" component={LearnWritePage} />
     <Route path="/list-quiz" component={ListQuizPage} />
     <Route path="/quiz" component={QuizPage} />
-    <Route path="/test/true_false" component={TestTrueFalsePage} />
-    <Route path="/test/multiplechoice" component={TestMultipleChoicePage} />
+    <Route path="/truefalse" component={TestTrueFalsePage} />
+    <Route path="/multiplechoice" component={TestMultipleChoicePage} />
     <Route path="/profile" component={Profile} />
   </div>
 )
