@@ -71,7 +71,7 @@ With user we have 8 main features:
 
 **Usecase**
 
-![usecase](https://imgur.com/dWuzwzg)
+![usecase](https://i.imgur.com/dWuzwzg.png)
 
 ### Software Detail Design
 
